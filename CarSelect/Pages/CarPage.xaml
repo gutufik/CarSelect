@@ -17,38 +17,55 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.RowSpan="2">
-            
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             
             <ComboBox x:Name="cbBodyType" ItemsSource="{Binding BodyTypes}" 
-                      DisplayMemberPath="Name"
+                      DisplayMemberPath="Name" Grid.Row="0"
                       SelectedItem="{Binding Car.BodyType}"
                       materialDesign:HintAssist.Hint="Кузов"/>
             <ComboBox x:Name="cbBrand" ItemsSource="{Binding Brands}"
-                      DisplayMemberPath="Name"
-                      materialDesign:HintAssist.Hint="Марка"/>
+                      DisplayMemberPath="Name" Grid.Row="1"
+                      SelectedItem="{Binding Car.Model.Brand, Mode=OneTime}"
+                      materialDesign:HintAssist.Hint="Марка"
+                      SelectionChanged="cbBrand_SelectionChanged"/>
             <ComboBox x:Name="cbModel" ItemsSource="{Binding Models}" 
-                      DisplayMemberPath="Name"
+                      DisplayMemberPath="Name" Grid.Row="2"
                       SelectedItem="{Binding Car.Model}"
                       materialDesign:HintAssist.Hint="Модель"/>
             <TextBox x:Name="tbYear" Text="{Binding Car.ReleaseYear}"
+                     Grid.Row="3"
                      materialDesign:HintAssist.Hint="Год выпуска"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
             <TextBox x:Name="tbColor" Text="{Binding Car.Color}"
+                     Grid.Row="0"
                      materialDesign:HintAssist.Hint="Цвет"/>
             <TextBox x:Name="tbEngineVolume" Text="{Binding Car.EngineVolume}"
+                     Grid.Row="1"
                      materialDesign:HintAssist.Hint="Объем двигателя"/>
-        </StackPanel>
-        <ScrollViewer Grid.Column="1">
-            <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}"
-                         AcceptsReturn="True"
+            <ScrollViewer Grid.Row="2" Grid.RowSpan="2">
+                <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}" Margin="10 20 10 10"
+                         AcceptsReturn="True" TextWrapping="Wrap"
                          materialDesign:HintAssist.Hint="Описание"/>
-        </ScrollViewer>
-
-
+            </ScrollViewer>
+        </Grid>
         <Image x:Name="imgCar" Source="{Binding Car.Image}" Grid.Column="2"  />
-        <Button x:Name="btnChangePhoto" Grid.Column="2" Content="Выбрать фото" Click="btnChangePhoto_Click"/>
+        <Button x:Name="btnChangePhoto" Grid.Column="2" Grid.Row="1" Content="Выбрать фото" Click="btnChangePhoto_Click"/>
 
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1" Grid.Column="1" Click="btnSave_Click"/>
 

@@ -37,8 +37,10 @@ namespace CarSelect.Pages
             Car = car;
             BodyTypes = DataAccess.GetBodyTypes();
             Brands = DataAccess.GetBrands();
-            Models = DataAccess.GetModels();
+            Models = Car.Model.Brand.Models.ToList();
 
+            if (Car.Requests.Count != 0)
+                this.IsEnabled = false;
 
             DataContext = this;
         }
@@ -62,6 +64,19 @@ namespace CarSelect.Pages
         {
             DataAccess.SaveCar(Car);
             NavigationService.GoBack();
+        }
+
+        private void cbBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var brand = (cbBrand.SelectedItem as Brand);
+
+            if (brand == null)
+                return;
+
+            Models = brand.Models.ToList();
+
+            cbModel.ItemsSource = Models;
+            cbModel.SelectedItem = null;
         }
     }
 }
