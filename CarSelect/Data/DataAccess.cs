@@ -18,7 +18,7 @@ namespace CarSelect.Data
         public static List<Request> GetRequests() => CarSelectEntities.GetContext().Requests.ToList();
         public static List<BodyType> GetBodyTypes() => CarSelectEntities.GetContext().BodyTypes.ToList();
         public static List<Client> GetClients() => CarSelectEntities.GetContext().Clients.ToList();
-        public static List<GasType> GetGasTypes() => CarSelectEntities.GetContext().GasTypes.ToList();
+        public static List<FuelType> GetFuelTypes() => CarSelectEntities.GetContext().FuelTypes.ToList();
 
         public static void SaveCar(Car car)
         {
@@ -96,11 +96,11 @@ namespace CarSelect.Data
             RefreshList?.Invoke();
         }
 
-        public static void SaveGasType(GasType gasType)
+        public static void SaveFuelType(FuelType fuelType)
         {
-            if (gasType.Id == 0)
+            if (fuelType.Id == 0)
             {
-                CarSelectEntities.GetContext().GasTypes.Add(gasType);
+                CarSelectEntities.GetContext().FuelTypes.Add(fuelType);
             }
 
             CarSelectEntities.GetContext().SaveChanges();

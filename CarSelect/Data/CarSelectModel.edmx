@@ -24,13 +24,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ModelId" Type="int" Nullable="false" />
           <Property Name="BodyTypeId" Type="int" Nullable="false" />
-          <Property Name="GasTypeId" Type="int" Nullable="false" />
+          <Property Name="FuelTypeId" Type="int" Nullable="false" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EngineVolume" Type="int" Nullable="false" />
+          <Property Name="EngineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ReleaseYear" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -44,7 +45,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="GasType">
+        <EntityType Name="FuelType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -56,8 +57,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -102,14 +103,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Car_Gas">
-          <End Role="GasType" Type="Self.GasType" Multiplicity="1" />
+          <End Role="FuelType" Type="Self.FuelType" Multiplicity="1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GasType">
+            <Principal Role="FuelType">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Car">
-              <PropertyRef Name="GasTypeId" />
+              <PropertyRef Name="FuelTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -178,7 +179,7 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GasType" EntityType="Self.GasType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -188,7 +189,7 @@
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Gas" Association="Self.FK_Car_Gas">
-            <End Role="GasType" EntitySet="GasType" />
+            <End Role="FuelType" EntitySet="FuelType" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Model" Association="Self.FK_Car_Model">
@@ -221,7 +222,7 @@
           <EntitySet Name="Brands" EntityType="CarSelectModel.Brand" />
           <EntitySet Name="Cars" EntityType="CarSelectModel.Car" />
           <EntitySet Name="Clients" EntityType="CarSelectModel.Client" />
-          <EntitySet Name="GasTypes" EntityType="CarSelectModel.GasType" />
+          <EntitySet Name="FuelTypes" EntityType="CarSelectModel.FuelType" />
           <EntitySet Name="Models" EntityType="CarSelectModel.Model" />
           <EntitySet Name="Requests" EntityType="CarSelectModel.Request" />
           <EntitySet Name="sysdiagrams" EntityType="CarSelectModel.sysdiagram" />
@@ -235,7 +236,7 @@
             <End Role="Model" EntitySet="Models" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Gas" Association="CarSelectModel.FK_Car_Gas">
-            <End Role="GasType" EntitySet="GasTypes" />
+            <End Role="FuelType" EntitySet="FuelTypes" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Model" Association="CarSelectModel.FK_Car_Model">
@@ -276,15 +277,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ModelId" Type="Int32" Nullable="false" />
           <Property Name="BodyTypeId" Type="Int32" Nullable="false" />
-          <Property Name="GasTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FuelTypeId" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EngineVolume" Type="Int32" Nullable="false" />
+          <Property Name="EngineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="BodyType" Relationship="CarSelectModel.FK_Car_BodyType" FromRole="Car" ToRole="BodyType" />
-          <NavigationProperty Name="GasType" Relationship="CarSelectModel.FK_Car_Gas" FromRole="Car" ToRole="GasType" />
+          <NavigationProperty Name="FuelType" Relationship="CarSelectModel.FK_Car_Gas" FromRole="Car" ToRole="FuelType" />
           <NavigationProperty Name="Model" Relationship="CarSelectModel.FK_Car_Model" FromRole="Car" ToRole="Model" />
           <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Car" FromRole="Car" ToRole="Request" />
         </EntityType>
@@ -301,21 +303,21 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Client" FromRole="Client" ToRole="Request" />
         </EntityType>
-        <EntityType Name="GasType">
+        <EntityType Name="FuelType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_Gas" FromRole="GasType" ToRole="Car" />
+          <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_Gas" FromRole="FuelType" ToRole="Car" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Brand" Relationship="CarSelectModel.FK_Model_Brand" FromRole="Model" ToRole="Brand" />
           <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_Model" FromRole="Model" ToRole="Car" />
         </EntityType>
@@ -378,14 +380,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Car_Gas">
-          <End Type="CarSelectModel.GasType" Role="GasType" Multiplicity="1" />
+          <End Type="CarSelectModel.FuelType" Role="FuelType" Multiplicity="1" />
           <End Type="CarSelectModel.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GasType">
+            <Principal Role="FuelType">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Car">
-              <PropertyRef Name="GasTypeId" />
+              <PropertyRef Name="FuelTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -462,13 +464,14 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarSelectModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
                 <ScalarProperty Name="EngineVolume" ColumnName="EngineVolume" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="GasTypeId" ColumnName="GasTypeId" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
                 <ScalarProperty Name="BodyTypeId" ColumnName="BodyTypeId" />
                 <ScalarProperty Name="ModelId" ColumnName="ModelId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -486,9 +489,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GasTypes">
-            <EntityTypeMapping TypeName="CarSelectModel.GasType">
-              <MappingFragment StoreEntitySet="GasType">
+          <EntitySetMapping Name="FuelTypes">
+            <EntityTypeMapping TypeName="CarSelectModel.FuelType">
+              <MappingFragment StoreEntitySet="FuelType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -497,8 +500,8 @@
           <EntitySetMapping Name="Models">
             <EntityTypeMapping TypeName="CarSelectModel.Model">
               <MappingFragment StoreEntitySet="Model">
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

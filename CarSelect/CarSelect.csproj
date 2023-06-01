@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -101,7 +102,7 @@
       <DependentUpon>CarSelectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\DataAccess.cs" />
-    <Compile Include="Data\GasType.cs">
+    <Compile Include="Data\FuelType.cs">
       <DependentUpon>CarSelectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Model.cs">
@@ -120,8 +121,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CarsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\CarsListPage.xaml.cs">
+      <DependentUpon>CarsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -166,6 +174,7 @@
       <DependentUpon>CarSelectModel.edmx</DependentUpon>
       <LastGenOutput>CarSelectModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\default.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
