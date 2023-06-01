@@ -28,24 +28,30 @@ namespace CarSelect.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            Login();
+        }
+
+        private void pbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Login();
+        }
+
+        private void Login()
+        {
             string login = tbLogin.Text;
             string password = pbPassword.Password;
 
-            // Проверка логина и пароля
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Введите логин и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if ((App.User = DataAccess.Login(login, password)) == null)
-            {
+            if ((App.User = DataAccess.Login(login, password)) != null)
                 NavigationService.Navigate(new CarsListPage());
-            }
             else
-            {
                 MessageBox.Show("Неправильный логин или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
     }
 }

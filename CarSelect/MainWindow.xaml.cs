@@ -26,15 +26,17 @@ namespace CarSelect
         {
             InitializeComponent();
 
-            frmMain.NavigationService.Navigate(new CarsListPage());
+            frmMain.NavigationService.Navigate(new LoginPage());
             frmMain.Navigated += FrmMain_Navigated;
         }
 
         private void FrmMain_Navigated(object sender, NavigationEventArgs e)
         {
-            var title = (frmMain.Content as Page).Title;
+            var content = frmMain.Content as Page;
 
-            this.Title = $"Автоподбор - {title}";
+            spNavigation.Visibility = content is LoginPage ? Visibility.Collapsed : Visibility.Visible;
+
+            this.Title = $"Автоподбор - {content.Title}";
         }
 
         private void btnCars_Click(object sender, RoutedEventArgs e)
@@ -44,17 +46,17 @@ namespace CarSelect
 
         private void btnClients_Click(object sender, RoutedEventArgs e)
         {
-            //frmMain.NavigationService.Navigate(new ClientsListPage());
+            frmMain.NavigationService.Navigate(new ClientsListPage());
         }
 
         private void btnRequests_Click(object sender, RoutedEventArgs e)
         {
-            //frmMain.NavigationService.Navigate(new RequestsListPage());
+            frmMain.NavigationService.Navigate(new RequestsListPage());
         }
 
         private void btnTariffs_Click(object sender, RoutedEventArgs e)
         {
-            //frmMain.NavigationService.Navigate(new TariffsListPage());
+            frmMain.NavigationService.Navigate(new TariffsListPage());
         }
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)

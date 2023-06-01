@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel x:Name="spNavigation" Orientation="Horizontal">
             <Button x:Name="btnCars" Content="Автомобили" Click="btnCars_Click"/>
             <Button x:Name="btnClients" Content="Клиенты" Click="btnClients_Click"/>
             <Button x:Name="btnRequests" Content="Заявки" Click="btnRequests_Click"/>

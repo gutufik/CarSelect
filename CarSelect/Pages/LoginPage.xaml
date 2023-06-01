@@ -26,7 +26,8 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Width="40" Height="40"/>
             <PasswordBox x:Name="pbPassword" Width="300" VerticalAlignment="Center"
-                         materialDesign:HintAssist.Hint="Пароль"/>
+                         materialDesign:HintAssist.Hint="Пароль"
+                         KeyDown="pbPassword_KeyDown"/>
         </StackPanel>
 
         <Button x:Name="btnLogin" Content="Войти" MinHeight="60" Grid.Row="2" FontSize="30" Click="btnLogin_Click"/>
