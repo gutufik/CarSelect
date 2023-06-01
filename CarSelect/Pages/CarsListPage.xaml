@@ -21,6 +21,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" materialDesign:HintAssist.Hint="Поиск"/>
@@ -30,7 +31,10 @@
             <ComboBox x:Name="cbBrand" Grid.Column="2" ItemsSource="{Binding Brands}" SelectedIndex="0"
                   SelectionChanged="cbBrand_SelectionChanged" materialDesign:HintAssist.Hint="Марка"
                   DisplayMemberPath="Name"/>
-            <ComboBox x:Name="cbSort" Grid.Column="3" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
+            <ComboBox x:Name="cbModel" Grid.Column="3" ItemsSource="{Binding Models}" SelectedIndex="0"
+                  SelectionChanged="cbModel_SelectionChanged" materialDesign:HintAssist.Hint="Модель"
+                  DisplayMemberPath="Name"/>
+            <ComboBox x:Name="cbSort" Grid.Column="4" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
                   SelectionChanged="cbSort_SelectionChanged" materialDesign:HintAssist.Hint="Сортировка"/>
         </Grid>
 

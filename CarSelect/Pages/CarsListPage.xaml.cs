@@ -1,6 +1,7 @@
 ﻿using CarSelect.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace CarSelect.Pages
         public List<Car> Cars { get; set; }
         public List<Car> CarsForFilters { get; set; }
         public List<Brand> Brands { get; set; }
+        public List<Model> Models { get; set; }
         public List<BodyType> BodyTypes { get; set; }
         public Dictionary<string, Func<Car, object>> Sortings { get; set; }
 
@@ -37,12 +39,12 @@ namespace CarSelect.Pages
         {
             InitializeComponent();
             Cars = DataAccess.GetCars();
+
             Brands = DataAccess.GetBrands();
-            Brands.Insert(0, new Brand { Name = "Все" });
+            Brands.Insert(0, new Brand { Name = "Все", Models = DataAccess.GetModels() });
 
             BodyTypes = DataAccess.GetBodyTypes();
             BodyTypes.Insert(0, new BodyType { Name = "Все" });
-
 
             Sortings = new Dictionary<string, Func<Car, object>>()
             {
@@ -64,13 +66,13 @@ namespace CarSelect.Pages
             var search = tbSearch.Text.ToLower().Trim();
             var bodyType = cbBodyType.SelectedItem as BodyType;
             var brand = cbBrand.SelectedItem as Brand;
+            var model = cbModel.SelectedItem as Model;
             var sorting = cbSort.SelectedItem as string;
 
-            if (string.IsNullOrEmpty(sorting) || bodyType == null || brand == null)
+            if (string.IsNullOrEmpty(sorting) || bodyType == null || brand == null || model == null)
                 return;
 
-            CarsForFilters = Cars.Where(x => (x.Model.Name.ToLower().Contains(search)
-                                            || x.Model.Brand.Name.ToLower().Contains(search))
+            CarsForFilters = model.Cars.Where(x => (x.Model.Name.ToLower().Contains(search) || x.Model.Brand.Name.ToLower().Contains(search))
                                             && (brand.Name == "Все" ? true : x.Model.Brand == brand)
                                             && (bodyType.Name == "Все" ? true : x.BodyType == bodyType)).ToList();
 
@@ -144,10 +146,23 @@ namespace CarSelect.Pages
 
         private void cbBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var brand = cbBrand.SelectedItem as Brand;
+            if (brand == null)
+                return;
+
+            Models = brand.Models.ToList();
+            Models.Insert(0, new Model { Name = "Все", Cars = Cars });
+            cbModel.ItemsSource = Models;
+            cbModel.SelectedIndex = 0;
             ApplyFilters();
         }
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void cbModel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplyFilters();
         }

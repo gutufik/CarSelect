@@ -36,17 +36,17 @@ namespace CarSelect
 
         private void btnClients_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.NavigationService.Navigate(new ClientsListPage());
+            //frmMain.NavigationService.Navigate(new ClientsListPage());
         }
 
         private void btnRequests_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.NavigationService.Navigate(new RequestsListPage());
+            //frmMain.NavigationService.Navigate(new RequestsListPage());
         }
 
         private void btnTariffs_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.NavigationService.Navigate(new TariffsListPage());
+            //frmMain.NavigationService.Navigate(new TariffsListPage());
         }
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)
