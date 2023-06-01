@@ -3,12 +3,40 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:CarSelect.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TariffsListPage">
+      Title="Тарифы">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="lvTariffs" ItemsSource="{Binding Tariffs}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+                                <MenuItem>
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon Kind="Menu" />
+                                    </MenuItem.Icon>
+                                    <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
+                                    <MenuItem Header="Получить статистику" />
+                                </MenuItem>
+                            </Menu>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
         
     </Grid>
 </Page>

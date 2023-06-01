@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSelect.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class ClientsListPage : Page
     {
+        public List<Client> Clients { get; set; }
         public ClientsListPage()
         {
             InitializeComponent();
+            Clients = DataAccess.GetClients();
+            DataContext = this;
+        }
+
+        private void miProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var client = (sender as MenuItem).DataContext as Client;
+
+            if (client != null)
+            {
+                NavigationService.Navigate(new ClientPage(client));
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSelect.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class TariffsListPage : Page
     {
+        public List<Tariff> Tariffs { get; set; }
         public TariffsListPage()
         {
             InitializeComponent();
+            Tariffs = DataAccess.GetTariffs();
+            DataContext = this;
+        }
+
+        private void miEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var tariff = (sender as MenuItem).DataContext as Tariff;
+            if (tariff != null)
+                NavigationService.Navigate(new TariffPage(tariff));
         }
     }
 }

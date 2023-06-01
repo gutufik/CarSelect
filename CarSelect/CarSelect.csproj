@@ -122,6 +122,8 @@
     <Compile Include="Data\Model.cs">
       <DependentUpon>CarSelectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Partial\Car.cs" />
+    <Compile Include="Data\Partial\Client.cs" />
     <Compile Include="Data\Partial\Role.cs" />
     <Compile Include="Data\Request.cs">
       <DependentUpon>CarSelectModel.tt</DependentUpon>
@@ -166,9 +168,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RequestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RequestsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TariffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TariffsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -195,8 +205,14 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RequestPage.xaml.cs">
+      <DependentUpon>RequestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RequestsListPage.xaml.cs">
       <DependentUpon>RequestsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TariffPage.xaml.cs">
+      <DependentUpon>TariffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TariffsListPage.xaml.cs">
       <DependentUpon>TariffsListPage.xaml</DependentUpon>

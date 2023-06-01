@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSelect.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,38 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class RequestsListPage : Page
     {
+        public List<Request> Requests { get; set; }
+
         public RequestsListPage()
         {
             InitializeComponent();
+            Requests = DataAccess.GetRequests();
+            DataAccess.RefreshList += DataAccess_RefreshList;
+
+
+            DataContext = this;
+        }
+
+        private void DataAccess_RefreshList()
+        {
+            Requests = DataAccess.GetRequests();
+            lvRequests.ItemsSource = Requests;
+            lvRequests.Items.Refresh();
+        }
+
+        private void btnNewRequest_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RequestPage(new Request()));
+        }
+
+        private void miEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var request = (sender as MenuItem).DataContext as Request;
+
+            if (request != null)
+            {
+                NavigationService.Navigate(new RequestPage(request));
+            }
         }
     }
 }

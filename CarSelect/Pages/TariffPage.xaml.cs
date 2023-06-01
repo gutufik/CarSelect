@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace CarSelect.Pages
 {
     /// <summary>
-    /// Interaction logic for ClientPage.xaml
+    /// Interaction logic for TariffPage.xaml
     /// </summary>
-    public partial class ClientPage : Page
+    public partial class TariffPage : Page
     {
-        public Client Client { get; set; }
-        public ClientPage(Client client)
+        public Tariff Tariff { get; set; }
+        public TariffPage(Tariff tariff)
         {
             InitializeComponent();
-            this.Client = client;
+            Tariff = tariff;
             DataContext = this;
         }
     }
