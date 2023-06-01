@@ -49,7 +49,10 @@ namespace CarSelect.Pages
             }
 
             if ((App.User = DataAccess.Login(login, password)) != null)
+            {
                 NavigationService.Navigate(new CarsListPage());
+                (App.Current.MainWindow as MainWindow).ChangeNavigationVisibility(App.User.Role.Name);
+            }
             else
                 MessageBox.Show("Неправильный логин или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }

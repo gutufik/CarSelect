@@ -34,7 +34,10 @@ namespace CarSelect
         {
             var content = frmMain.Content as Page;
 
-            spNavigation.Visibility = content is LoginPage ? Visibility.Collapsed : Visibility.Visible;
+            var visibility = content is LoginPage ? Visibility.Collapsed : Visibility.Visible;
+
+            spNavigation.Visibility = visibility;
+            spPagination.Visibility = visibility;
 
             this.Title = $"Автоподбор - {content.Title}";
         }
@@ -62,6 +65,26 @@ namespace CarSelect
         private void btnUsers_Click(object sender, RoutedEventArgs e)
         {
             frmMain.NavigationService.Navigate(new UsersListPage());
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (frmMain.CanGoBack)
+                frmMain.GoBack();
+        }
+
+        private void btnForward_Click(object sender, RoutedEventArgs e)
+        {
+            if (frmMain.CanGoForward)
+                frmMain.GoForward();
+        }
+
+        public void ChangeNavigationVisibility(string roleName)
+        {
+            if (roleName == "Консультант")
+                btnUsers.Visibility = Visibility.Collapsed;
+            else
+                btnUsers.Visibility = Visibility.Visible;
         }
     }
 }
