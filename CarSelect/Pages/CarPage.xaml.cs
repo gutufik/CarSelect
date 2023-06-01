@@ -1,6 +1,8 @@
 ﻿using CarSelect.Data;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -27,15 +29,39 @@ namespace CarSelect.Pages
 
         public List<Model> Models { get; set; }
 
+        public Car Car { get; set; }
+
         public CarPage(Car car)
         {
             InitializeComponent();
+            Car = car;
             BodyTypes = DataAccess.GetBodyTypes();
             Brands = DataAccess.GetBrands();
             Models = DataAccess.GetModels();
 
 
             DataContext = this;
+        }
+
+        private void btnChangePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog()
+            {
+                Filter = "Image|*.png;*.jpeg;*.jpg"
+            };
+
+            if (openFileDialog.ShowDialog().Value)
+            {
+                Car.Image = File.ReadAllBytes(openFileDialog.FileName);
+                imgCar.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+            }
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.SaveCar(Car);
+            NavigationService.GoBack();
         }
     }
 }

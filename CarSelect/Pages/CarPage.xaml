@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CarSelect.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CarPage">
@@ -14,9 +15,42 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.RowSpan="2">
+            
+            
+            <ComboBox x:Name="cbBodyType" ItemsSource="{Binding BodyTypes}" 
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding Car.BodyType}"
+                      materialDesign:HintAssist.Hint="Кузов"/>
+            <ComboBox x:Name="cbBrand" ItemsSource="{Binding Brands}"
+                      DisplayMemberPath="Name"
+                      materialDesign:HintAssist.Hint="Марка"/>
+            <ComboBox x:Name="cbModel" ItemsSource="{Binding Models}" 
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding Car.Model}"
+                      materialDesign:HintAssist.Hint="Модель"/>
+            <TextBox x:Name="tbYear" Text="{Binding Car.ReleaseYear}"
+                     materialDesign:HintAssist.Hint="Год выпуска"/>
+            <TextBox x:Name="tbColor" Text="{Binding Car.Color}"
+                     materialDesign:HintAssist.Hint="Цвет"/>
+            <TextBox x:Name="tbEngineVolume" Text="{Binding Car.EngineVolume}"
+                     materialDesign:HintAssist.Hint="Объем двигателя"/>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1">
+            <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}"
+                         AcceptsReturn="True"
+                         materialDesign:HintAssist.Hint="Описание"/>
+        </ScrollViewer>
 
 
-        <Image />
+        <Image x:Name="imgCar" Source="{Binding Car.Image}" Grid.Column="2"  />
+        <Button x:Name="btnChangePhoto" Grid.Column="2" Content="Выбрать фото" Click="btnChangePhoto_Click"/>
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1" Grid.Column="1" Click="btnSave_Click"/>
 
     </Grid>
 </Page>

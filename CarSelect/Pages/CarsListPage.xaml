@@ -23,8 +23,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" Margin="10" Padding="5"
-                     FontSize="20" materialDesign:HintAssist.Hint="Поиск"/>
+            <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" materialDesign:HintAssist.Hint="Поиск"/>
             <ComboBox x:Name="cbBodyType" Grid.Column="1" ItemsSource="{Binding BodyTypes}" SelectedIndex="0"
                   SelectionChanged="cbBodyType_SelectionChanged" materialDesign:HintAssist.Hint="Кузов"
                   DisplayMemberPath="Name"/>

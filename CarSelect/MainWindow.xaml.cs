@@ -27,5 +27,25 @@ namespace CarSelect
 
             frmMain.NavigationService.Navigate(new CarsListPage());
         }
+
+        private void btnCars_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new CarsListPage());
+        }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new ClientsListPage());
+        }
+
+        private void btnRequests_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new RequestsListPage());
+        }
+
+        private void btnTariffs_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new TariffsListPage());
+        }
     }
 }

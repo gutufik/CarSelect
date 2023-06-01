@@ -50,6 +50,7 @@ namespace CarSelect.Pages
                 { "Сначала новые", x => x.ReleaseYear },
                 { "Сначала старые", x => x.ReleaseYear },
             };
+            DataAccess.RefreshList += DataAccess_RefreshList;
 
 
             DataContext = this;
@@ -78,7 +79,15 @@ namespace CarSelect.Pages
             lvCars.ItemsSource = CarsForFilters.Skip(page * pageSize).Take(pageSize);
             lvCars.Items.Refresh();
 
+            
+
             SetPageNumbers();
+        }
+
+        private void DataAccess_RefreshList()
+        {
+            Cars = DataAccess.GetCars();
+            ApplyFilters();
         }
 
         private void SetPageNumbers()
@@ -121,7 +130,11 @@ namespace CarSelect.Pages
 
         private void lvCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplyFilters();
+            var car = lvCars.SelectedItem as Car;
+            if (car != null)
+                NavigationService.Navigate(new CarPage(car));
+
+            lvCars.SelectedIndex = -1;
         }
 
         private void cbBodyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
