@@ -38,7 +38,7 @@ namespace CarSelect.Pages
                 return;
             }
 
-            if ((App.User = DataAccess.GetUser(login, password)) == null)
+            if ((App.User = DataAccess.Login(login, password)) == null)
             {
                 NavigationService.Navigate(new CarsListPage());
             }
