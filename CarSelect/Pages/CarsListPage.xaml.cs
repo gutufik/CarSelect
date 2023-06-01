@@ -22,6 +22,10 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class CarsListPage : Page
     {
+        private int ITEMSONPAGE = 2;
+        private int _page = 0;
+        private int pagesCount => (CarsForFilters.Count / ITEMSONPAGE) + (CarsForFilters.Count % ITEMSONPAGE == 0 ? 0 : 1);
+
         public List<Car> Cars { get; set; }
         public List<Car> CarsForFilters { get; set; }
         public List<Brand> Brands { get; set; }
@@ -29,11 +33,6 @@ namespace CarSelect.Pages
         public List<BodyType> BodyTypes { get; set; }
         public Dictionary<string, Func<Car, object>> Sortings { get; set; }
 
-        private int page = 0;
-
-        private int pageSize = 10;
-
-        private int pagesCount => (CarsForFilters.Count / pageSize) + (CarsForFilters.Count % pageSize == 0 ? 0 : 1);
 
         public CarsListPage()
         {
@@ -61,7 +60,7 @@ namespace CarSelect.Pages
         private void ApplyFilters(bool filtersChanged = true)
         {
             if (filtersChanged)
-                page = 0;
+                _page = 0;
 
             var search = tbSearch.Text.ToLower().Trim();
             var bodyType = cbBodyType.SelectedItem as BodyType;
@@ -78,12 +77,10 @@ namespace CarSelect.Pages
 
             CarsForFilters = CarsForFilters.OrderBy(Sortings[sorting]).ToList();
 
-            lvCars.ItemsSource = CarsForFilters.Skip(page * pageSize).Take(pageSize);
+            lvCars.ItemsSource = CarsForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvCars.Items.Refresh();
 
-
-
-            SetPageNumbers();
+            GeneratePages();
         }
 
         private void DataAccess_RefreshList()
@@ -92,35 +89,52 @@ namespace CarSelect.Pages
             ApplyFilters();
         }
 
-        private void SetPageNumbers()
+        private void GeneratePages()
         {
             spPagination.Children.Clear();
 
-            spPagination.Children.Add(new TextBlock { Text = "<" });
+            spPagination.Children.Add(new TextBlock
+            {
+                Text = "<",
+                FontSize = 20,
+                Margin = new Thickness(2, 0, 2, 0)
+            });
 
             for (int i = 0; i < pagesCount; i++)
             {
-                spPagination.Children.Add(new TextBlock() { Text = $"{i + 1}" });
+                spPagination.Children.Add(new TextBlock()
+                {
+                    Text = $"{i + 1}",
+                    FontSize = 20,
+                    Margin = new Thickness(2, 0, 2, 0)
+                });
             }
 
-            spPagination.Children.Add(new TextBlock { Text = ">" });
+            spPagination.Children.Add(new TextBlock
+            {
+                Text = ">",
+                FontSize = 20,
+                Margin = new Thickness(2, 0, 2, 0)
+            });
 
             foreach (var child in spPagination.Children)
             {
-                (child as UIElement).MouseDown += CarsListPage_MouseDown;
+                (child as UIElement).MouseDown += Paginator;
             }
+            if (spPagination.Children.Count != 0)
+                (spPagination.Children[_page + 1] as TextBlock).TextDecorations = TextDecorations.Underline;
         }
 
-        private void CarsListPage_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Paginator(object sender, MouseButtonEventArgs e)
         {
             var content = (sender as TextBlock).Text;
 
-            if (content.Contains("<") && page > 0)
-                page--;
-            else if (content.Contains(">") && page < pagesCount - 1)
-                page++;
+            if (content.Contains("<") && _page > 0)
+                _page--;
+            else if (content.Contains(">") && _page < pagesCount - 1)
+                _page++;
             else if (int.TryParse(content, out int newPage))
-                page = newPage - 1;
+                _page = newPage - 1;
 
             ApplyFilters(false);
         }
@@ -165,6 +179,11 @@ namespace CarSelect.Pages
         private void cbModel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplyFilters();
+        }
+
+        private void btnNewCar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

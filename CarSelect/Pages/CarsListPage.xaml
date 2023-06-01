@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CarsListPage">
+      Title="Список автомобилей">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -71,7 +71,12 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel x:Name="spPagination" Orientation="Horizontal" Grid.Row="2"/>
+        <Button x:Name="btnNewCar" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewCar_Click">
+            <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
+        </Button>
 
+        <StackPanel x:Name="spPagination" Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Grid.Row="2" HorizontalAlignment="Right"/>
     </Grid>
 </Page>
