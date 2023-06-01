@@ -32,6 +32,15 @@ namespace CarSelect.Pages
 
             DataContext = this;
         }
+        public RequestsListPage(List<Request> requests)
+        {
+            InitializeComponent();
+            Requests = requests;
+            DataAccess.RefreshList += DataAccess_RefreshList;
+
+
+            DataContext = this;
+        }
 
         private void DataAccess_RefreshList()
         {

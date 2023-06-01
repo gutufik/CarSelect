@@ -1,4 +1,4 @@
-﻿<Page x:Class="CarSelect.Pages.ClientPage"
+﻿<Page x:Class="CarSelect.Pages.UserPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CarSelect.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientPage">
+      Title="UserPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,17 +15,18 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <TextBox x:Name="tbLastName" Text="{Binding Client.LastName}"/>
-            <TextBox x:Name="tbFirstName" Text="{Binding Client.FirstName}"/>
-            <TextBox x:Name="tbPatronymic" Text="{Binding Client.Patronymic}"/>
-            <TextBox x:Name="tbAddress" Text="{Binding Client.Address}"/>
-            <TextBox x:Name="tbPhone" Text="{Binding Client.Phone}"/>
-            <TextBox x:Name="tbEmail" Text="{Binding Client.Email}"/>
+            <TextBox x:Name="tbLogin" Text="{Binding User.Login}"/>
+            <TextBox x:Name="tbNewPassword" />
+            <TextBox x:Name="tbLastName" Text="{Binding User.LastName}"/>
+            <TextBox x:Name="tbFirstName" Text="{Binding User.FirstName}"/>
+            <TextBox x:Name="tbPatronymic" Text="{Binding User.Patronymic}"/>
+
+            <ComboBox x:Name="cbRole" ItemsSource="{Binding Roles}" 
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding User.Role}"/>
         </StackPanel>
 
         <Button x:Name="btnSave" Content="Сохранить"
                 Grid.Column="1" Click="btnSave_Click"/>
-
-
     </Grid>
 </Page>

@@ -17,25 +17,30 @@ using System.Windows.Shapes;
 namespace CarSelect.Pages
 {
     /// <summary>
-    /// Interaction logic for UserListPage.xaml
+    /// Interaction logic for UserPage.xaml
     /// </summary>
-    public partial class UsersListPage : Page
+    public partial class UserPage : Page
     {
-        public List<User> Users { get; set; }
-        public UsersListPage()
+        public User User { get; set; }
+        public List<Role> Roles { get; set; }
+        public UserPage(User user)
         {
             InitializeComponent();
-            Users = DataAccess.GetUsers();
+            User = user;
+            Roles = DataAccess.GetRoles();
             DataContext = this;
         }
 
-        private void miEdit_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var user = (sender as MenuItem).DataContext as User;
-
-            if (user != null)
+            try
             {
-                NavigationService.Navigate(new UserPage(user));
+                DataAccess.SaveUser(User);
+                NavigationService.GoBack();
+            }
+            catch
+            {
+                MessageBox.Show("Заполните все поля");
             }
         }
     }

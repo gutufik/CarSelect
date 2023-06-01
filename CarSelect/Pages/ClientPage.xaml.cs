@@ -28,5 +28,18 @@ namespace CarSelect.Pages
             this.Client = client;
             DataContext = this;
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataAccess.SaveClient(Client);
+                NavigationService.GoBack();
+            }
+            catch
+            {
+                MessageBox.Show("Заполните все поля");
+            }
+        }
     }
 }

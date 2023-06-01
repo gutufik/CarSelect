@@ -27,7 +27,7 @@
                                         <materialDesign:PackIcon Kind="Menu" />
                                     </MenuItem.Icon>
                                     <MenuItem x:Name="miProfile" Header="Профиль" Click="miProfile_Click" />
-                                    <MenuItem Header="Заявки" />
+                                    <MenuItem x:Name="miRequests" Header="Заявки" Click="miRequests_Click" />
                                 </MenuItem>
                             </Menu>
                         </DataTemplate>
