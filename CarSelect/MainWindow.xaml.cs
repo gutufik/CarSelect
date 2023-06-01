@@ -26,6 +26,14 @@ namespace CarSelect
             InitializeComponent();
 
             frmMain.NavigationService.Navigate(new CarsListPage());
+            frmMain.Navigated += FrmMain_Navigated;
+        }
+
+        private void FrmMain_Navigated(object sender, NavigationEventArgs e)
+        {
+            var title = (frmMain.Content as Page).Title;
+
+            this.Title = $"Автоподбор - {title}";
         }
 
         private void btnCars_Click(object sender, RoutedEventArgs e)

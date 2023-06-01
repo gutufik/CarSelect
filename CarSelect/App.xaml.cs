@@ -13,5 +13,6 @@ namespace CarSelect
     /// </summary>
     public partial class App : Application
     {
+        public static User User { get; set; }
     }
 }
