@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CarSelect.Data;
 using CarSelect.Pages;
 
 namespace CarSelect
@@ -46,6 +47,11 @@ namespace CarSelect
         private void btnTariffs_Click(object sender, RoutedEventArgs e)
         {
             frmMain.NavigationService.Navigate(new TariffsListPage());
+        }
+
+        private void btnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new UsersListPage());
         }
     }
 }

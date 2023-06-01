@@ -20,9 +20,13 @@ namespace CarSelect.Data
         public int TariffId { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
+        public Nullable<int> ConsultantId { get; set; }
+        public Nullable<int> StateId { get; set; }
     
         public virtual Car Car { get; set; }
         public virtual Client Client { get; set; }
+        public virtual State State { get; set; }
         public virtual Tariff Tariff { get; set; }
+        public virtual User User { get; set; }
     }
 }

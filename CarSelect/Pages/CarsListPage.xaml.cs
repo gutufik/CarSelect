@@ -38,13 +38,13 @@ namespace CarSelect.Pages
             InitializeComponent();
             Cars = DataAccess.GetCars();
             Brands = DataAccess.GetBrands();
-            Brands.Insert(0, new Brand { Name = "Все"});
+            Brands.Insert(0, new Brand { Name = "Все" });
 
             BodyTypes = DataAccess.GetBodyTypes();
-            BodyTypes.Insert(0, new BodyType { Name = "Все" }); 
+            BodyTypes.Insert(0, new BodyType { Name = "Все" });
 
 
-            Sortings = new Dictionary<string, Func<Car, object>>() 
+            Sortings = new Dictionary<string, Func<Car, object>>()
             {
                 { "Без сортировки", x => x.Id },
                 { "Сначала новые", x => x.ReleaseYear },
@@ -71,7 +71,7 @@ namespace CarSelect.Pages
 
             CarsForFilters = Cars.Where(x => (x.Model.Name.ToLower().Contains(search)
                                             || x.Model.Brand.Name.ToLower().Contains(search))
-                                            && (brand.Name == "Все"? true: x.Model.Brand == brand ) 
+                                            && (brand.Name == "Все" ? true : x.Model.Brand == brand)
                                             && (bodyType.Name == "Все" ? true : x.BodyType == bodyType)).ToList();
 
             CarsForFilters = CarsForFilters.OrderBy(Sortings[sorting]).ToList();
@@ -79,7 +79,7 @@ namespace CarSelect.Pages
             lvCars.ItemsSource = CarsForFilters.Skip(page * pageSize).Take(pageSize);
             lvCars.Items.Refresh();
 
-            
+
 
             SetPageNumbers();
         }
@@ -95,14 +95,14 @@ namespace CarSelect.Pages
             spPagination.Children.Clear();
 
             spPagination.Children.Add(new TextBlock { Text = "<" });
-            
+
             for (int i = 0; i < pagesCount; i++)
             {
-                spPagination.Children.Add(new TextBlock() { Text = $"{i+1}" });
+                spPagination.Children.Add(new TextBlock() { Text = $"{i + 1}" });
             }
 
             spPagination.Children.Add(new TextBlock { Text = ">" });
-            
+
             foreach (var child in spPagination.Children)
             {
                 (child as UIElement).MouseDown += CarsListPage_MouseDown;

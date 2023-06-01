@@ -20,8 +20,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.RowSpan="2">
-            
-            
+
+
             <ComboBox x:Name="cbBodyType" ItemsSource="{Binding BodyTypes}" 
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding Car.BodyType}"

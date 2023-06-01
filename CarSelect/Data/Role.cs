@@ -12,29 +12,18 @@ namespace CarSelect.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Car
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
+        public Role()
         {
-            this.Requests = new HashSet<Request>();
+            this.Users = new HashSet<User>();
         }
     
         public int Id { get; set; }
-        public int ModelId { get; set; }
-        public int BodyTypeId { get; set; }
-        public int FuelTypeId { get; set; }
-        public string Color { get; set; }
-        public decimal EngineVolume { get; set; }
-        public int ReleaseYear { get; set; }
-        public string Description { get; set; }
-        public byte[] Image { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public string Name { get; set; }
     
-        public virtual BodyType BodyType { get; set; }
-        public virtual FuelType FuelType { get; set; }
-        public virtual Model Model { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
