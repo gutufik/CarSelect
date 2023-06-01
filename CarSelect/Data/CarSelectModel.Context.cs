@@ -32,7 +32,10 @@ namespace CarSelect.Data
         public virtual DbSet<FuelType> FuelTypes { get; set; }
         public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<State> States { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tariff> Tariffs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

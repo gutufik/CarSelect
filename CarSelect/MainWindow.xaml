@@ -18,6 +18,7 @@
             <Button x:Name="btnClients" Content="Клиенты" Click="btnClients_Click"/>
             <Button x:Name="btnRequests" Content="Заявки" Click="btnRequests_Click"/>
             <Button x:Name="btnTariffs" Content="Тарифы" Click="btnTariffs_Click"/>
+            <Button x:Name="btnUsers" Content="Пользователи" Click="btnUsers_Click"/>
 
         </StackPanel>
         <Frame x:Name="frmMain" 

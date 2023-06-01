@@ -5,22 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="aa2dc02dbe0241f680baf7c2f256e1ed" Name="Diagram1">
-        <EntityTypeShape EntityType="CarSelectModel.BodyType" Width="1.5" PointX="3" PointY="4.75" />
-        <EntityTypeShape EntityType="CarSelectModel.Brand" Width="1.5" PointX="0.75" PointY="2" />
-        <EntityTypeShape EntityType="CarSelectModel.Car" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="CarSelectModel.Client" Width="1.5" PointX="5.25" PointY="6.125" />
-        <EntityTypeShape EntityType="CarSelectModel.FuelType" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="CarSelectModel.Model" Width="1.5" PointX="3" PointY="1.75" />
-        <EntityTypeShape EntityType="CarSelectModel.Request" Width="1.5" PointX="7.5" PointY="1.375" />
-        <EntityTypeShape EntityType="CarSelectModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CarSelectModel.Tariff" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="CarSelectModel.BodyType" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="CarSelectModel.Brand" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="CarSelectModel.Car" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="CarSelectModel.Client" Width="1.5" PointX="5.25" PointY="12.375" />
+        <EntityTypeShape EntityType="CarSelectModel.FuelType" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="CarSelectModel.Model" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="CarSelectModel.Request" Width="1.5" PointX="7.5" PointY="2.625" />
+        <EntityTypeShape EntityType="CarSelectModel.Role" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="CarSelectModel.State" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="CarSelectModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.25" />
+        <EntityTypeShape EntityType="CarSelectModel.Tariff" Width="1.5" PointX="5.25" PointY="18" />
+        <EntityTypeShape EntityType="CarSelectModel.User" Width="1.5" PointX="5.25" PointY="8.875" />
         <AssociationConnector Association="CarSelectModel.FK_Car_BodyType" />
         <AssociationConnector Association="CarSelectModel.FK_Model_Brand" />
         <AssociationConnector Association="CarSelectModel.FK_Car_Gas" />
         <AssociationConnector Association="CarSelectModel.FK_Car_Model" />
         <AssociationConnector Association="CarSelectModel.FK_Request_Car" />
         <AssociationConnector Association="CarSelectModel.FK_Request_Client" />
+        <AssociationConnector Association="CarSelectModel.FK_Request_State" />
         <AssociationConnector Association="CarSelectModel.FK_Request_Tariff" />
+        <AssociationConnector Association="CarSelectModel.FK_Request_User" />
+        <AssociationConnector Association="CarSelectModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

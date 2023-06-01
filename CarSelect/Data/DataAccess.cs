@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +20,44 @@ namespace CarSelect.Data
         public static List<BodyType> GetBodyTypes() => CarSelectEntities.GetContext().BodyTypes.ToList();
         public static List<Client> GetClients() => CarSelectEntities.GetContext().Clients.ToList();
         public static List<FuelType> GetFuelTypes() => CarSelectEntities.GetContext().FuelTypes.ToList();
+        public static List<Role> GetRoles() => CarSelectEntities.GetContext().Roles.ToList();
+        public static List<User> GetUsers() => CarSelectEntities.GetContext().Users.ToList();
+        public static List<State> GetStates() => CarSelectEntities.GetContext().States.ToList();
+
+        public static User Login(string login, string password)
+        {
+            string hashPassword = StringToMD5(password);
+            return CarSelectEntities.GetContext().Users.FirstOrDefault(x => x.Login == login && x.Password == hashPassword);
+        }
+
+        private static string StringToMD5(string password)
+        {
+            StringBuilder sb = new StringBuilder();
+            var md5 = MD5.Create();
+
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            foreach (var b in hash)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+
+            return sb.ToString();
+        }
 
         public static void SaveCar(Car car)
         {
             if (car.Id == 0)
                 CarSelectEntities.GetContext().Cars.Add(car);
+
+            CarSelectEntities.GetContext().SaveChanges();
+            RefreshList?.Invoke();
+        }
+
+        public static void SaveUser(User user)
+        {
+            if (user.Id == 0)
+                CarSelectEntities.GetContext().Users.Add(user);
 
             CarSelectEntities.GetContext().SaveChanges();
             RefreshList?.Invoke();
