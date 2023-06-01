@@ -4,32 +4,36 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CarSelect.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CarsListPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged"/>
-        <ComboBox x:Name="cbBodyType" Grid.Column="1" ItemsSource="{Binding BodyTypes}" SelectedIndex="0"
-                  SelectionChanged="cbBodyType_SelectionChanged"
+            <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" Margin="10" Padding="5"
+                     FontSize="20" materialDesign:HintAssist.Hint="Поиск"/>
+            <ComboBox x:Name="cbBodyType" Grid.Column="1" ItemsSource="{Binding BodyTypes}" SelectedIndex="0"
+                  SelectionChanged="cbBodyType_SelectionChanged" materialDesign:HintAssist.Hint="Кузов"
                   DisplayMemberPath="Name"/>
-        <ComboBox x:Name="cbBrand" Grid.Column="2" ItemsSource="{Binding Brands}" SelectedIndex="0"
-                  SelectionChanged="cbBrand_SelectionChanged"
+            <ComboBox x:Name="cbBrand" Grid.Column="2" ItemsSource="{Binding Brands}" SelectedIndex="0"
+                  SelectionChanged="cbBrand_SelectionChanged" materialDesign:HintAssist.Hint="Марка"
                   DisplayMemberPath="Name"/>
-        <ComboBox x:Name="cbSort" Grid.Column="3" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
-                  SelectionChanged="cbSort_SelectionChanged"/>
+            <ComboBox x:Name="cbSort" Grid.Column="3" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
+                  SelectionChanged="cbSort_SelectionChanged" materialDesign:HintAssist.Hint="Сортировка"/>
+        </Grid>
 
         <ListView x:Name="lvCars" ItemsSource="{Binding Cars}" Grid.Row="1"  Grid.ColumnSpan="4"
                   HorizontalContentAlignment="Stretch"
