@@ -2,8 +2,80 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CarSelect"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Green" SecondaryColor="Red"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Green.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="BackgroundColor">
+                #fafafa
+            </SolidColorBrush>
+
+
+            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Margin" Value="2, 5"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="MaxWidth" Value="400"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
+            <Style x:Key="btnSecondary" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedSecondaryButton}">
+                <Setter Property="Margin" Value="2, 5"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="MaxWidth" Value="400"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
+            <Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="MaxWidth" Value="400"/>
+            </Style>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="MaxWidth" Value="400"/>
+                <Setter Property="Margin" Value="0 5"/>
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="MaxWidth" Value="400"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+
+            <Style TargetType="ListView" BasedOn="{StaticResource MaterialDesignListView}">
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+
+            <Style TargetType="materialDesign:TimePicker" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+
+            <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}">
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+
+            <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
