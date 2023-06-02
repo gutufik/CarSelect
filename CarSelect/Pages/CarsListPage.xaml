@@ -64,7 +64,9 @@
                             <Run Text="{Binding Model.Name}"/>
                         </TextBlock>
 
-                        <TextBlock Grid.Column="2" Text="{Binding ReleaseYear}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Description}"/>
+
+                        <TextBlock  Grid.Column="2" HorizontalAlignment="Right" Text="{Binding Price}"/>
 
                     </Grid>
                 </DataTemplate>

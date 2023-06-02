@@ -70,9 +70,10 @@
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="TariffId" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
           <Property Name="ConsultantId" Type="int" />
           <Property Name="StateId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -426,9 +427,10 @@
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="TariffId" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="ConsultantId" Type="Int32" />
           <Property Name="StateId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Car" Relationship="CarSelectModel.FK_Request_Car" FromRole="Request" ToRole="Car" />
           <NavigationProperty Name="Client" Relationship="CarSelectModel.FK_Request_Client" FromRole="Request" ToRole="Client" />
           <NavigationProperty Name="State" Relationship="CarSelectModel.FK_Request_State" FromRole="Request" ToRole="State" />
@@ -676,6 +678,7 @@
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="CarSelectModel.Request">
               <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />

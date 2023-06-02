@@ -15,29 +15,34 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="lvTariffs" ItemsSource="{Binding Tariffs}"
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
-                                <MenuItem>
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind="Menu" />
-                                    </MenuItem.Icon>
-                                    <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
-                                    <MenuItem Header="Получить статистику" />
-                                </MenuItem>
-                            </Menu>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-
-        </DataGrid>
+        <ListView x:Name="lvTariffs" Grid.Row="1" ItemsSource="{Binding Tariffs}"
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Description}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Price, StringFormat={}{0} руб }"/>
+                        <Menu Grid.Column="3" HorizontalAlignment="Right" materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+                            <MenuItem>
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="Menu" />
+                                </MenuItem.Icon>
+                                <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
+                                <MenuItem Header="Получить статистику" />
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="btnNewTariff" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewTariff_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>

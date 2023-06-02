@@ -15,38 +15,53 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="lvUsers" ItemsSource="{Binding Users}"
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding}"/>
-                <DataGridTemplateColumn Header="Роль">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <materialDesign:Chip Content="{Binding Role.Name}" 
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbSearch" 
+                     materialDesign:HintAssist.Hint="Поиск"
+                     TextChanged="tbSearch_TextChanged" />
+            <ComboBox x:Name="cbRole" ItemsSource="{Binding Roles}" SelectedIndex="0"
+                      Grid.Column="1"
+                      materialDesign:HintAssist.Hint="Роль"
+                      DisplayMemberPath="Name"
+                      SelectionChanged="cbRole_SelectionChanged"/>
+        </Grid>
+        
+        <ListView x:Name="lvUsers" ItemsSource="{Binding Users}"
+                  Grid.Row="1" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding}"/>
+                        <materialDesign:Chip Grid.Column="1" Content="{Binding Role.Name}" 
                                                  IsEnabled="False"
                                                  Background="{Binding Role.Color}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
-                                <MenuItem>
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind="Menu" />
-                                    </MenuItem.Icon>
-                                    <MenuItem Header="Профиль" />
-                                    <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click" />
-                                    <MenuItem Header="Получить статистику" />
-                                </MenuItem>
-                            </Menu>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+                        <Menu Grid.Column="2" 
+                              HorizontalAlignment="Right"
+                              materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
+                            <MenuItem>
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="Menu" />
+                                </MenuItem.Icon>
+                                <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
+                                <MenuItem Header="Получить статистику" />
+                            </MenuItem>
+                        </Menu>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-        </DataGrid>
+        </ListView>
         <Button x:Name="btnNewUser" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewUser_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>

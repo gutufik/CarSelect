@@ -22,10 +22,13 @@ namespace CarSelect.Pages
     public partial class UsersListPage : Page
     {
         public List<User> Users { get; set; }
+        public List<Role> Roles { get; set; }
         public UsersListPage()
         {
             InitializeComponent();
             Users = DataAccess.GetUsers();
+            Roles = DataAccess.GetRoles();
+            Roles.Insert(0, new Role { Name = "Все роли"});
             DataContext = this;
         }
 
@@ -42,6 +45,16 @@ namespace CarSelect.Pages
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new UserPage(new User()));
+        }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void cbRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -24,6 +24,9 @@ namespace CarSelect.Data
         public static List<User> GetUsers() => CarSelectEntities.GetContext().Users.ToList();
         public static List<State> GetStates() => CarSelectEntities.GetContext().States.ToList();
 
+
+        public static State GetStateByName(string name) => GetStates().FirstOrDefault(x => x.Name == name);
+
         public static User Login(string login, string password)
         {
             string hashPassword = StringToMD5(password);
@@ -54,10 +57,13 @@ namespace CarSelect.Data
             RefreshList?.Invoke();
         }
 
-        public static void SaveUser(User user)
+        public static void SaveUser(User user, string password = null)
         {
             if (user.Id == 0)
                 CarSelectEntities.GetContext().Users.Add(user);
+
+            if (password != null)
+                user.Password = StringToMD5(password);
 
             CarSelectEntities.GetContext().SaveChanges();
             RefreshList?.Invoke();

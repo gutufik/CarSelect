@@ -22,11 +22,17 @@ namespace CarSelect.Pages
     public partial class RequestsListPage : Page
     {
         public List<Request> Requests { get; set; }
+        public List<Client> Clients { get; set; }
+        public List<State> States { get; set; }
 
         public RequestsListPage()
         {
             InitializeComponent();
             Requests = DataAccess.GetRequests();
+            Clients = DataAccess.GetClients();
+            States = DataAccess.GetStates();
+            States.Insert(0, new State { Name = "Все" });
+
             DataAccess.RefreshList += DataAccess_RefreshList;
 
 

@@ -22,10 +22,18 @@ namespace CarSelect.Pages
     public partial class ClientsListPage : Page
     {
         public List<Client> Clients { get; set; }
+        public Dictionary<string, Func<Client, object>> Sortings { get; set; }
         public ClientsListPage()
         {
             InitializeComponent();
             Clients = DataAccess.GetClients();
+            Sortings = new Dictionary<string, Func<Client, object>>
+            {
+                { "Без сортировки", x => x.Id },
+                { "От А до Я", x => x.LastName },
+                { "От Я до А", x => x.LastName }
+            };
+
             DataContext = this;
         }
 
@@ -63,6 +71,11 @@ namespace CarSelect.Pages
                 var request = new Request() { Client = client, User = App.User };
                 NavigationService.Navigate(new RequestPage(request));
             }
+        }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
