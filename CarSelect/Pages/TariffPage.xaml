@@ -10,21 +10,24 @@
       Title="TariffPage">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBox x:Name="tbName" Text="{Binding Tariff.Name}"
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="tbName" Text="{Binding Tariff.Name}" Grid.Row="0"
                      materialDesign:HintAssist.Hint="Название"/>
-            <TextBox x:Name="tbDescription" Text="{Binding Tariff.Description}"
-                     materialDesign:HintAssist.Hint="Описание"/>
-            <TextBox x:Name="tbPrice" Text="{Binding Tariff.Price}"
+        <TextBox x:Name="tbPrice" Text="{Binding Tariff.Price}" Grid.Row="1"
                      materialDesign:HintAssist.Hint="Цена"/>
-        </StackPanel>
+        <ScrollViewer Grid.Row="2" HorizontalAlignment="Center">
+            <TextBox x:Name="tbDescription" Text="{Binding Tariff.Description}" Margin="5 20 10 10"
+                     AcceptsReturn="True" TextWrapping="Wrap"
+                     materialDesign:HintAssist.Hint="Описание"/>
+        </ScrollViewer>
+        
 
-        <Button x:Name="btnSave" Content="Сохранить"
-                Grid.Column="1" Click="btnSave_Click"/>
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="3" Click="btnSave_Click"/>
 
     </Grid>
 </Page>

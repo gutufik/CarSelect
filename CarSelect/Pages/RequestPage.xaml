@@ -14,31 +14,64 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
             <ComboBox x:Name="cbClient" ItemsSource="{Binding Clients}"
-                      SelectedItem="{Binding Request.Client}"
+                      SelectedItem="{Binding Request.Client}" Grid.Row="0"
                       materialDesign:HintAssist.Hint="Клиент"/>
             <ComboBox x:Name="cbCar" ItemsSource="{Binding Cars}"
-                      SelectedItem="{Binding Request.Car}"
+                      SelectedItem="{Binding Request.Car}" Grid.Row="1"
                       materialDesign:HintAssist.Hint="Автомобиль"/>
-            <ComboBox x:Name="cbTariff" ItemsSource="{Binding Tariffs}"
-                      DisplayMemberPath="Name"
-                      SelectedItem="{Binding Request.Tariff}"
-                      materialDesign:HintAssist.Hint="Тариф"/>
+
             <DatePicker x:Name="dpStartDate" SelectedDate="{Binding Request.StartDate}"
+                        Language="ru" Grid.Row="2"
                         materialDesign:HintAssist.Hint="Дата начала"/>
             <DatePicker x:Name="dpEndDate" SelectedDate="{Binding Request.EndDate}"
+                        Language="ru" Grid.Row="3"
                         materialDesign:HintAssist.Hint="Дата окончания"/>
-            <ComboBox x:Name="cbConsultant" ItemsSource="{Binding Users}"
-                      SelectedItem="{Binding Request.User}"
-                      materialDesign:HintAssist.Hint="Консультант"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
             <ComboBox x:Name="cbState" ItemsSource="{Binding States}"
-                      DisplayMemberPath="Name"
+                      DisplayMemberPath="Name" Grid.Row="0"
                       SelectedItem="{Binding Request.State}"
                       materialDesign:HintAssist.Hint="Статус"/>
 
-        </StackPanel>
-        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="1" Click="btnSave_Click"/>
+            <ComboBox x:Name="cbTariff" ItemsSource="{Binding Tariffs}"
+                      DisplayMemberPath="Name" Grid.Row="1"
+                      SelectedItem="{Binding Request.Tariff}"
+                      materialDesign:HintAssist.Hint="Тариф"/>
+
+            <ComboBox x:Name="cbConsultant" ItemsSource="{Binding Users}" IsEnabled="False"
+                      SelectedItem="{Binding Request.User}" Grid.Row="2"
+                      materialDesign:HintAssist.Hint="Консультант"/>
+
+            <ScrollViewer Grid.Row="3" HorizontalAlignment="Center">
+                <TextBox x:Name="tbDescritpion" Text="{Binding Request.Description}" Margin="5 20 10 10"
+                         AcceptsReturn="True" TextWrapping="Wrap"
+                         materialDesign:HintAssist.Hint="Описание"/>
+            </ScrollViewer>
+        </Grid>
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="1" Click="btnSave_Click"/>
 
     </Grid>
 </Page>

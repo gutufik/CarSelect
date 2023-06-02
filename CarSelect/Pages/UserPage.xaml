@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CarSelect.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserPage">
@@ -14,19 +15,53 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
-            <TextBox x:Name="tbLogin" Text="{Binding User.Login}"/>
-            <TextBox x:Name="tbNewPassword" />
-            <TextBox x:Name="tbLastName" Text="{Binding User.LastName}"/>
-            <TextBox x:Name="tbFirstName" Text="{Binding User.FirstName}"/>
-            <TextBox x:Name="tbPatronymic" Text="{Binding User.Patronymic}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tbLastName" Text="{Binding User.LastName}" Grid.Row="0"
+                     materialDesign:HintAssist.Hint="Фамилия"/>
+            <TextBox x:Name="tbFirstName" Text="{Binding User.FirstName}" Grid.Row="1"
+                     materialDesign:HintAssist.Hint="Имя"/>
+            <TextBox x:Name="tbPatronymic" Text="{Binding User.Patronymic}" Grid.Row="2"
+                     materialDesign:HintAssist.Hint="Отчество"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
             <ComboBox x:Name="cbRole" ItemsSource="{Binding Roles}" 
-                      DisplayMemberPath="Name"
-                      SelectedItem="{Binding User.Role}"/>
-        </StackPanel>
+                      DisplayMemberPath="Name" Grid.Row="0"
+                      SelectedItem="{Binding User.Role}"
+                      materialDesign:HintAssist.Hint="Роль"/>
+            
+            <TextBox x:Name="tbLogin" Text="{Binding User.Login}" Grid.Row="1"
+                     materialDesign:HintAssist.Hint="Логин"/>
 
-        <Button x:Name="btnSave" Content="Сохранить"
-                Grid.Column="1" Click="btnSave_Click"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="tbNewPassword" materialDesign:HintAssist.Hint="Пароль"/>
+                <Button x:Name="btnGenerate" Content="Новый пароль" Grid.Column="1" Click="btnGenerate_Click"/>
+            </Grid>
+        </Grid>
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1"
+                Grid.ColumnSpan="2" Click="btnSave_Click"/>
     </Grid>
 </Page>

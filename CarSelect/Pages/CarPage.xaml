@@ -58,7 +58,10 @@
             <TextBox x:Name="tbEngineVolume" Text="{Binding Car.EngineVolume}"
                      Grid.Row="1"
                      materialDesign:HintAssist.Hint="Объем двигателя"/>
-            <ScrollViewer Grid.Row="2" Grid.RowSpan="2">
+            <TextBox x:Name="tbPrice" Text="{Binding Car.Price}"
+                     Grid.Row="2"
+                     materialDesign:HintAssist.Hint="Цена"/>
+            <ScrollViewer Grid.Row="3">
                 <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}" Margin="10 20 10 10"
                          AcceptsReturn="True" TextWrapping="Wrap"
                          materialDesign:HintAssist.Hint="Описание"/>

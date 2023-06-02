@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace CarSelect.Pages
 {
@@ -33,15 +34,53 @@ namespace CarSelect.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
+            StringBuilder sb = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(User.LastName))
+                sb.AppendLine("Необходимо заполнить фамилию");
+            if (string.IsNullOrWhiteSpace(User.LastName))
+                sb.AppendLine("Необходимо заполнить имя");
+            if (string.IsNullOrWhiteSpace(User.Login))
+                sb.AppendLine("Необходимо заполнить логин");
+            if (User.Role == null)
+                sb.AppendLine("Необходимо выбрать роль");
+
+            if (sb.Length > 0)
             {
+                MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (tbNewPassword.Text == "")
                 DataAccess.SaveUser(User);
-                NavigationService.GoBack();
-            }
-            catch
+            else
+                DataAccess.SaveUser(User, tbNewPassword.Text);
+
+            NavigationService.GoBack();
+        }
+
+        private void btnGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            var passLength = 10;
+            var chars = "abcdefghijklmnopqrstuvwxyz" +
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "0123456789" +
+                "!@#$%";
+
+            RandomNumberGenerator generator = RandomNumberGenerator.Create();
+
+            char[] password = new char[passLength];
+            byte[] randomBytes = new byte[passLength];
+
+            generator.GetBytes(randomBytes);
+
+            for (int i = 0; i < passLength; i++)
             {
-                MessageBox.Show("Заполните все поля");
+                int randomCharIndex = randomBytes[i] % chars.Length;
+                password[i] = chars[randomCharIndex];
             }
+
+            tbNewPassword.Text = new string(password);
         }
     }
 }

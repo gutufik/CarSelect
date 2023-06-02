@@ -14,24 +14,45 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TextBox x:Name="tbLastName" Text="{Binding Client.LastName}"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tbLastName" Text="{Binding Client.LastName}" Grid.Row="0"
                      materialDesign:HintAssist.Hint="Фамилия"/>
-            <TextBox x:Name="tbFirstName" Text="{Binding Client.FirstName}"
+            <TextBox x:Name="tbFirstName" Text="{Binding Client.FirstName}"  Grid.Row="1"
                      materialDesign:HintAssist.Hint="Имя"/>
-            <TextBox x:Name="tbPatronymic" Text="{Binding Client.Patronymic}"
+            <TextBox x:Name="tbPatronymic" Text="{Binding Client.Patronymic}"  Grid.Row="2"
                      materialDesign:HintAssist.Hint="Отчество"/>
-            <TextBox x:Name="tbAddress" Text="{Binding Client.Address}"
-                     materialDesign:HintAssist.Hint="Адрес"/>
-            <TextBox x:Name="tbPhone" Text="{Binding Client.Phone}"
-                     materialDesign:HintAssist.Hint="Номер телефона"/>
-            <TextBox x:Name="tbEmail" Text="{Binding Client.Email}"
-                     materialDesign:HintAssist.Hint="Email"/>
-        </StackPanel>
+        </Grid>
 
-        <Button x:Name="btnSave" Content="Сохранить"
-                Grid.Column="1" Click="btnSave_Click"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tbAddress" Text="{Binding Client.Address}" Grid.Row="0"
+                     materialDesign:HintAssist.Hint="Адрес"/>
+            <TextBox x:Name="tbPhone" Text="{Binding Client.Phone}" Grid.Row="1"
+                     materialDesign:HintAssist.Hint="Номер телефона"
+                     PreviewTextInput="tbPhone_PreviewTextInput"/>
+            <TextBox x:Name="tbEmail" Text="{Binding Client.Email}" Grid.Row="2"
+                     materialDesign:HintAssist.Hint="Email"/>
+        </Grid>
+        
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1"
+                Grid.ColumnSpan="2" Click="btnSave_Click"/>
 
 
     </Grid>

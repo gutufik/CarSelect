@@ -27,6 +27,7 @@ namespace CarSelect.Pages
         public List<Client> Clients { get; set; }
         public List<Car> Cars { get; set; }
         public List<Tariff> Tariffs { get; set; }
+
         public RequestPage(Request request)
         {
             InitializeComponent();
@@ -37,21 +38,39 @@ namespace CarSelect.Pages
             Cars = DataAccess.GetCars();
             Tariffs = DataAccess.GetTariffs();
 
+            dpStartDate.DisplayDateStart = DateTime.Now;
+            dpEndDate.DisplayDateStart = request.Id == 0 ? DateTime.Now : request.StartDate;
+
+            if (request.Id == 0)
+                dpEndDate.IsEnabled = false;
+
+            if (request.EndDate != null ||
+                "Завершена_Отклонена".Contains(request.State.Name) ||
+                (!request.State.Name.Contains("Новая") && App.User.Role.Name.Contains("Консультант")))
+                this.IsEnabled = false;
+
             DataContext = this;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
+            StringBuilder sb = new StringBuilder();
+
+            if (Request.Client == null)
+                sb.AppendLine("Необходимо выбрать клиента");
+            if (Request.Tariff == null)
+                sb.AppendLine("Необходимо выбрать тариф");
+            if (Request.Car == null && Request.State.Name.Contains("Завершена"))
+                sb.AppendLine("Невозможно завершить заявку, не выбрав автомобиль");
+
+            if (sb.Length > 0)
             {
-                DataAccess.SaveRequest(Request);
-                NavigationService.GoBack();
-            }
-            catch
-            {
-                MessageBox.Show("Заполните все поля");
+                MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
+            DataAccess.SaveRequest(Request);
+            NavigationService.GoBack();
         }
     }
 }
