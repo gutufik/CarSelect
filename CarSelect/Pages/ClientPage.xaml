@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:CarSelect.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -15,12 +16,18 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <TextBox x:Name="tbLastName" Text="{Binding Client.LastName}"/>
-            <TextBox x:Name="tbFirstName" Text="{Binding Client.FirstName}"/>
-            <TextBox x:Name="tbPatronymic" Text="{Binding Client.Patronymic}"/>
-            <TextBox x:Name="tbAddress" Text="{Binding Client.Address}"/>
-            <TextBox x:Name="tbPhone" Text="{Binding Client.Phone}"/>
-            <TextBox x:Name="tbEmail" Text="{Binding Client.Email}"/>
+            <TextBox x:Name="tbLastName" Text="{Binding Client.LastName}"
+                     materialDesign:HintAssist.Hint="Фамилия"/>
+            <TextBox x:Name="tbFirstName" Text="{Binding Client.FirstName}"
+                     materialDesign:HintAssist.Hint="Имя"/>
+            <TextBox x:Name="tbPatronymic" Text="{Binding Client.Patronymic}"
+                     materialDesign:HintAssist.Hint="Отчество"/>
+            <TextBox x:Name="tbAddress" Text="{Binding Client.Address}"
+                     materialDesign:HintAssist.Hint="Адрес"/>
+            <TextBox x:Name="tbPhone" Text="{Binding Client.Phone}"
+                     materialDesign:HintAssist.Hint="Номер телефона"/>
+            <TextBox x:Name="tbEmail" Text="{Binding Client.Email}"
+                     materialDesign:HintAssist.Hint="Email"/>
         </StackPanel>
 
         <Button x:Name="btnSave" Content="Сохранить"

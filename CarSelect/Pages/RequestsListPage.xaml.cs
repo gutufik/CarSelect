@@ -51,7 +51,8 @@ namespace CarSelect.Pages
 
         private void btnNewRequest_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RequestPage(new Request()));
+            var request = new Request() { User = App.User };
+            NavigationService.Navigate(new RequestPage(request));
         }
 
         private void miEdit_Click(object sender, RoutedEventArgs e)

@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="lvUsers" ItemsSource="{Binding Users}"
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
@@ -46,38 +47,9 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <!--<ListView >
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding}"/>
-                        <GridViewColumn Header="Роль" >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <materialDesign:Chip Content="{Binding Role.Name}" Background="{Binding Role.Color}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Menu materialDesign:MenuAssist.TopLevelMenuItemHeight="25">
-                                        <MenuItem>
-                                            <MenuItem.Icon>
-                                                <materialDesign:PackIcon Kind="Menu" />
-                                            </MenuItem.Icon>
-                                            <MenuItem Header="Профиль" />
-                                            <MenuItem Header="Редактировать" />
-                                            <MenuItem Header="Получить статистику" />
-                                        </MenuItem>
-                                    </Menu>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
+        <Button x:Name="btnNewUser" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewUser_Click">
+            <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
+        </Button>
 
     </Grid>
 </Page>

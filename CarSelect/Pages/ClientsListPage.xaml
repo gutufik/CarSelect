@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="lvClients" ItemsSource="{Binding Clients}"
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
@@ -28,6 +29,7 @@
                                     </MenuItem.Icon>
                                     <MenuItem x:Name="miProfile" Header="Профиль" Click="miProfile_Click" />
                                     <MenuItem x:Name="miRequests" Header="Заявки" Click="miRequests_Click" />
+                                    <MenuItem x:Name="miNewRequest" Header="Новая заявка" Click="miNewRequest_Click" />
                                 </MenuItem>
                             </Menu>
                         </DataTemplate>
@@ -36,5 +38,9 @@
             </DataGrid.Columns>
 
         </DataGrid>
+
+        <Button x:Name="btnNewClient" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewClient_Click">
+            <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
+        </Button>
     </Grid>
 </Page>

@@ -183,7 +183,7 @@ namespace CarSelect.Pages
 
         private void btnNewCar_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new CarPage(new Car()));
         }
     }
 }

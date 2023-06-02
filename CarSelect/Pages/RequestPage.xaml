@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:CarSelect.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -15,19 +16,26 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <ComboBox x:Name="cbClient" ItemsSource="{Binding Clients}"
-                      SelectedItem="{Binding Request.Client}"/>
+                      SelectedItem="{Binding Request.Client}"
+                      materialDesign:HintAssist.Hint="Клиент"/>
             <ComboBox x:Name="cbCar" ItemsSource="{Binding Cars}"
-                      SelectedItem="{Binding Request.Car}"/>
+                      SelectedItem="{Binding Request.Car}"
+                      materialDesign:HintAssist.Hint="Автомобиль"/>
             <ComboBox x:Name="cbTariff" ItemsSource="{Binding Tariffs}"
                       DisplayMemberPath="Name"
-                      SelectedItem="{Binding Request.Tariff}"/>
-            <DatePicker x:Name="dpStartDate" SelectedDate="{Binding Request.StartDate}"/>
-            <DatePicker x:Name="dpEndDate" SelectedDate="{Binding Request.EndDate}"/>
+                      SelectedItem="{Binding Request.Tariff}"
+                      materialDesign:HintAssist.Hint="Тариф"/>
+            <DatePicker x:Name="dpStartDate" SelectedDate="{Binding Request.StartDate}"
+                        materialDesign:HintAssist.Hint="Дата начала"/>
+            <DatePicker x:Name="dpEndDate" SelectedDate="{Binding Request.EndDate}"
+                        materialDesign:HintAssist.Hint="Дата окончания"/>
             <ComboBox x:Name="cbConsultant" ItemsSource="{Binding Users}"
-                      SelectedItem="{Binding Request.User}"/>
+                      SelectedItem="{Binding Request.User}"
+                      materialDesign:HintAssist.Hint="Консультант"/>
             <ComboBox x:Name="cbState" ItemsSource="{Binding States}"
                       DisplayMemberPath="Name"
-                      SelectedItem="{Binding Request.State}"/>
+                      SelectedItem="{Binding Request.State}"
+                      materialDesign:HintAssist.Hint="Статус"/>
 
         </StackPanel>
         <Button x:Name="btnSave" Content="Сохранить" Grid.Column="1" Click="btnSave_Click"/>

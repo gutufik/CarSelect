@@ -38,5 +38,10 @@ namespace CarSelect.Pages
                 NavigationService.Navigate(new UserPage(user));
             }
         }
+
+        private void btnNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserPage(new User()));
+        }
     }
 }

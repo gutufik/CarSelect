@@ -37,7 +37,10 @@ namespace CarSelect.Pages
             Car = car;
             BodyTypes = DataAccess.GetBodyTypes();
             Brands = DataAccess.GetBrands();
-            Models = Car.Model.Brand.Models.ToList();
+            if (Car.Model !=  null)
+                Models = Car.Model.Brand.Models.ToList();
+            else
+                Models = DataAccess.GetModels();
 
             if (Car.Requests.Count != 0)
                 this.IsEnabled = false;

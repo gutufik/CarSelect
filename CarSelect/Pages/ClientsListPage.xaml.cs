@@ -48,5 +48,21 @@ namespace CarSelect.Pages
                 NavigationService.Navigate(new RequestsListPage(client.Requests.ToList()));
             }
         }
+
+        private void btnNewClient_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ClientPage(new Client()));
+        }
+
+        private void miNewRequest_Click(object sender, RoutedEventArgs e)
+        {
+            var client = (sender as MenuItem).DataContext as Client;
+
+            if (client != null)
+            {
+                var request = new Request() { Client = client, User = App.User };
+                NavigationService.Navigate(new RequestPage(request));
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CarSelect.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TariffPage">
@@ -14,10 +15,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <TextBox x:Name="tbName" Text="{Binding Tariff.Name}"/>
-            <TextBox x:Name="tbDescription" Text="{Binding Tariff.Description}"/>
-            <TextBox x:Name="tbPrice" Text="{Binding Tariff.Price}"/>
+            <TextBox x:Name="tbName" Text="{Binding Tariff.Name}"
+                     materialDesign:HintAssist.Hint="Название"/>
+            <TextBox x:Name="tbDescription" Text="{Binding Tariff.Description}"
+                     materialDesign:HintAssist.Hint="Описание"/>
+            <TextBox x:Name="tbPrice" Text="{Binding Tariff.Price}"
+                     materialDesign:HintAssist.Hint="Цена"/>
         </StackPanel>
-        
+
+        <Button x:Name="btnSave" Content="Сохранить"
+                Grid.Column="1" Click="btnSave_Click"/>
+
     </Grid>
 </Page>

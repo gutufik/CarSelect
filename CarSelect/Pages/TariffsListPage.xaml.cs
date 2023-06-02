@@ -35,5 +35,10 @@ namespace CarSelect.Pages
             if (tariff != null)
                 NavigationService.Navigate(new TariffPage(tariff));
         }
+
+        private void btnNewTariff_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TariffPage(new Tariff()));
+        }
     }
 }

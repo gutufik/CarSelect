@@ -28,5 +28,18 @@ namespace CarSelect.Pages
             Tariff = tariff;
             DataContext = this;
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataAccess.SaveTariff(Tariff);
+                NavigationService.GoBack();
+            }
+            catch 
+            {
+                MessageBox.Show("Заполните все поля");
+            }
+        }
     }
 }
