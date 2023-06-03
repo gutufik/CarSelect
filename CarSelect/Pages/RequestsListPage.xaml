@@ -64,11 +64,20 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
 
-        <Button x:Name="btnNewRequest" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewRequest_Click">
+        <Button x:Name="btnRequestsStatistics" VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="2" Padding="2 0" Click="btnRequestsStatistics_Click">
+            <materialDesign:PackIcon Kind="ChartPie" Width="28" Height="28"/>
+        </Button>
+
+        <Button x:Name="btnNewRequest" VerticalAlignment="Center"
+                Grid.Row="2" Padding="2 0" Click="btnNewRequest_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>
+
+        <StackPanel x:Name="spPagination" Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Grid.Row="2" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

@@ -54,17 +54,20 @@
                                     <materialDesign:PackIcon Kind="Menu" />
                                 </MenuItem.Icon>
                                 <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
-                                <MenuItem Header="Получить статистику" />
+                                <MenuItem x:Name="miRequestsStatistic" Header="Получить статистику" Click="miRequestsStatistic_Click"/>
                             </MenuItem>
                         </Menu>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
+        
         <Button x:Name="btnNewUser" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewUser_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>
 
+        <StackPanel x:Name="spPagination" Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Grid.Row="2" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

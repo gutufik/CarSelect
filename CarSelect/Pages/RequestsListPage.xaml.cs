@@ -66,9 +66,12 @@ namespace CarSelect.Pages
             var request = (sender as MenuItem).DataContext as Request;
 
             if (request != null)
-            {
                 NavigationService.Navigate(new RequestPage(request));
-            }
+        }
+
+        private void btnRequestsStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RequestsByStatePage(Requests));
         }
     }
 }

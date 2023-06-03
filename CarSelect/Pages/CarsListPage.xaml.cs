@@ -22,7 +22,7 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class CarsListPage : Page
     {
-        private int ITEMSONPAGE = 2;
+        private int ITEMSONPAGE = 10;
         private int _page = 0;
         private int pagesCount => (CarsForFilters.Count / ITEMSONPAGE) + (CarsForFilters.Count % ITEMSONPAGE == 0 ? 0 : 1);
 
@@ -57,6 +57,13 @@ namespace CarSelect.Pages
             DataContext = this;
         }
 
+        private void DataAccess_RefreshList()
+        {
+            Cars = DataAccess.GetCars();
+            Brands[0].Models = DataAccess.GetModels();
+            ApplyFilters();
+        }
+
         private void ApplyFilters(bool filtersChanged = true)
         {
             if (filtersChanged)
@@ -81,12 +88,6 @@ namespace CarSelect.Pages
             lvCars.Items.Refresh();
 
             GeneratePages();
-        }
-
-        private void DataAccess_RefreshList()
-        {
-            Cars = DataAccess.GetCars();
-            ApplyFilters();
         }
 
         private void GeneratePages()
