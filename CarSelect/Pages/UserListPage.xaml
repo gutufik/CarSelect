@@ -61,7 +61,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
+        <Button x:Name="btnUsersStatistic" VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="2" Padding="2 0" Click="btnUsersStatistic_Click">
+            <materialDesign:PackIcon Kind="ChartPie" Width="28" Height="28"/>
+        </Button>
+
         <Button x:Name="btnNewUser" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewUser_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>

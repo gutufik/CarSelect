@@ -1,6 +1,6 @@
 ﻿using CarSelect.Data;
-using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,36 +15,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LiveChartsCore.SkiaSharpView.Painting;
-using SkiaSharp;
-using LiveChartsCore.SkiaSharpView.WPF;
 
 namespace CarSelect.Pages
 {
     /// <summary>
-    /// Interaction logic for RequestsByStatePage.xaml
+    /// Interaction logic for ProfitByUsers.xaml
     /// </summary>
-    public partial class RequestsByStatePage : Page
+    public partial class ProfitByUsers : Page
     {
-        public ICollection<Request> Requests { get; set; }
+        public ICollection<User> Users { get; set; }
         public ICollection<ISeries> Series { get; set; }
 
-        public RequestsByStatePage(ICollection<Request> requests)
+        public ProfitByUsers(ICollection<User> users)
         {
             InitializeComponent();
 
-            Requests = requests;
-
-            var statesCount = requests.GroupBy(r => r.State)
-                                      .Select(g => new { StateName = g.Key.Name, Count = g.Count() });
+            Users = users;
 
             Series = new List<ISeries>();
-            foreach (var stateCount in statesCount)
+            foreach (var user in Users)
             {
                 Series.Add(new PieSeries<double>
                 {
-                    Values = new double[] { stateCount.Count },
-                    Name = stateCount.StateName,
+                    Values = new double[] { (double)user.Requests.Sum(r => r.Tariff.Price * (r.Car == null ? 0 : r.Car.Price)) },
+                    Name = user.ToString(),
                     DataLabelsFormatter = p => $"{p.PrimaryValue} / {p.StackedValue.Total} ({p.StackedValue.Share:P2})"
                 });
             }

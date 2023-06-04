@@ -43,6 +43,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button x:Name="btnTariffsStatistics" VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="2" Padding="2 0" Click="btnTariffsStatistics_Click">
+            <materialDesign:PackIcon Kind="ChartPie" Width="28" Height="28"/>
+        </Button>
+
         <Button x:Name="btnNewTariff" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewTariff_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>

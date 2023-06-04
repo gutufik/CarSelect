@@ -153,5 +153,10 @@ namespace CarSelect.Pages
 
             ApplyFilters(false);
         }
+
+        private void btnUsersStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProfitByUsers(Users));
+        }
     }
 }

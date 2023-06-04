@@ -86,5 +86,10 @@ namespace CarSelect
             else
                 btnUsers.Visibility = Visibility.Visible;
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            frmMain.NavigationService.Navigate(new LoginPage());
+        }
     }
 }

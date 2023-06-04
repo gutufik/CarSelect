@@ -29,6 +29,13 @@
             <Button x:Name="btnForward" Click="btnForward_Click">
                 <materialDesign:PackIcon Kind="ArrowRight" />
             </Button>
+            <Button x:Name="btnExit" Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Left" Padding="5"
+                        Click="btnExit_Click">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="ExitRun"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
 
         <Frame x:Name="frmMain" 
