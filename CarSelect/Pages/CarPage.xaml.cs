@@ -65,6 +65,31 @@ namespace CarSelect.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder sb = new StringBuilder();
+
+            if (Car.BodyType == null)
+                sb.AppendLine("Необходимо выбрать Кузов");
+            if (cbBrand.SelectedItem == null)
+                sb.AppendLine("Необходимо выбрать Марку");
+            if (Car.Model == null)
+                sb.AppendLine("Необходимо выбрать Модель");
+            if (Car.ReleaseYear > DateTime.Now.Year)
+                sb.AppendLine("Год выпуска не может превышать текущий год");
+            else if (Car.ReleaseYear < 1806)
+                sb.AppendLine("В указанный год не выпускались автомобили");
+            if (string.IsNullOrWhiteSpace(Car.Color))
+                sb.AppendLine("Необходимо указать Цвет");
+            if (Car.EngineVolume <= 0)
+                sb.AppendLine("Объем двигателя должен превышать 0");
+            if (Car.Price <= 0)
+                sb.AppendLine("Цена должна превышать 0");
+
+            if (sb.Length != 0)
+            {
+                MessageBox.Show(sb.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             DataAccess.SaveCar(Car);
             NavigationService.GoBack();
         }
