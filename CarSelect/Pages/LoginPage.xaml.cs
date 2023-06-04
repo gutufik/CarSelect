@@ -24,6 +24,9 @@ namespace CarSelect.Pages
         public LoginPage()
         {
             InitializeComponent();
+
+            tbLogin.Text = Properties.Settings.Default.Login;
+            cbRemember.IsChecked = !string.IsNullOrWhiteSpace(tbLogin.Text);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -50,6 +53,12 @@ namespace CarSelect.Pages
 
             if ((App.User = DataAccess.Login(login, password)) != null)
             {
+                if (cbRemember.IsChecked.GetValueOrDefault())
+                    Properties.Settings.Default.Login = login;
+                else
+                    Properties.Settings.Default.Login = null;
+                Properties.Settings.Default.Save();
+
                 NavigationService.Navigate(new CarsListPage());
                 (App.Current.MainWindow as MainWindow).ChangeNavigationVisibility(App.User.Role.Name);
             }

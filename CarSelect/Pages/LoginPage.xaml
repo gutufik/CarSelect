@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -30,6 +31,8 @@
                          KeyDown="pbPassword_KeyDown"/>
         </StackPanel>
 
-        <Button x:Name="btnLogin" Content="Войти" MinHeight="60" Grid.Row="2" FontSize="30" Click="btnLogin_Click"/>
+        <CheckBox x:Name="cbRemember" Content="Запомнить данные" Grid.Row="2" IsChecked="False"/>
+        
+        <Button x:Name="btnLogin" Content="Войти" MinHeight="60" Grid.Row="3" FontSize="30" Click="btnLogin_Click"/>
     </Grid>
 </Page>
