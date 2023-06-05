@@ -68,7 +68,7 @@ namespace CarSelect.Pages
 
             if (client != null)
             {
-                var request = new Request() { Client = client, User = App.User };
+                var request = new Request() { Client = client, User = App.User, StartDate = DateTime.Now };
                 NavigationService.Navigate(new RequestPage(request));
             }
         }

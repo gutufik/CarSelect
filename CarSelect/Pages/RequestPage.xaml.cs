@@ -45,8 +45,9 @@ namespace CarSelect.Pages
                 dpEndDate.IsEnabled = false;
 
             if (request.EndDate != null ||
-                "Завершена_Отклонена".Contains(request.State.Name) ||
-                (!request.State.Name.Contains("Новая") && App.User.Role.Name.Contains("Консультант")))
+                (request.State == null) ? false :
+                ("Завершена_Отклонена".Contains(request.State.Name) ||
+                (!request.State.Name.Contains("Новая") && App.User.Role.Name.Contains("Консультант"))))
                 this.IsEnabled = false;
 
             DataContext = this;

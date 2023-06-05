@@ -57,7 +57,7 @@ namespace CarSelect.Pages
 
         private void btnNewRequest_Click(object sender, RoutedEventArgs e)
         {
-            var request = new Request() { User = App.User };
+            var request = new Request() { User = App.User, StartDate = DateTime.Now };
             NavigationService.Navigate(new RequestPage(request));
         }
 
