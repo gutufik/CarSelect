@@ -18,5 +18,6 @@
         <TextBlock Text="Заявки по статусу" FontSize="24" HorizontalAlignment="Center"/>
 
         <lvc:PieChart x:Name="chartRequests" Grid.Row="1" LegendPosition="Bottom" Series="{Binding Series}"/>
+        <Button x:Name="btnExport" HorizontalAlignment="Right"  Click="btnExport_Click"/>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using CarSelect.Data;
+using CarSelect.Services;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using System;
@@ -44,6 +45,12 @@ namespace CarSelect.Pages
             }
 
             DataContext = this;
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            ExportService.ExportUsersStatistics(Users.ToList());
+            MessageBox.Show("Статистика успешно экспортирована.");
         }
     }
 }

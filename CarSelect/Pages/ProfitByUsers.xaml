@@ -19,5 +19,7 @@
 
         <lvc:PieChart x:Name="chartUsers" Grid.Row="1"
                       LegendPosition="Right" Series="{Binding Series}"/>
+
+        <Button x:Name="btnExport" HorizontalAlignment="Right" Click="btnExport_Click"/>
     </Grid>
 </Page>

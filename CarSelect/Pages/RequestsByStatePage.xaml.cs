@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using LiveChartsCore.SkiaSharpView.WPF;
+using CarSelect.Services;
 
 namespace CarSelect.Pages
 {
@@ -50,6 +51,12 @@ namespace CarSelect.Pages
             }
 
             DataContext = this;
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            ExportService.ExportUserStatistics(Requests.ToList());
+            MessageBox.Show("Статистика успешно экспортирована.");
         }
     }
 }
