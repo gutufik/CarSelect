@@ -63,6 +63,7 @@ namespace CarSelect.Pages
         {
             Cars = DataAccess.GetCars();
             Brands[0].Models = DataAccess.GetModels();
+            Models[0].Cars = Cars.ToList();
             ApplyFilters();
         }
 

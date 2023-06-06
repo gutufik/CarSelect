@@ -25,6 +25,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             
             <ComboBox x:Name="cbBodyType" ItemsSource="{Binding BodyTypes}" 
@@ -40,8 +41,12 @@
                       DisplayMemberPath="Name" Grid.Row="2"
                       SelectedItem="{Binding Car.Model}"
                       materialDesign:HintAssist.Hint="Модель"/>
+            <ComboBox x:Name="cbFuelType" ItemsSource="{Binding FuelTypes}" 
+                      DisplayMemberPath="Name" Grid.Row="3"
+                      SelectedItem="{Binding Car.FuelType}"
+                      materialDesign:HintAssist.Hint="Тип топлива"/>
             <TextBox x:Name="tbYear" Text="{Binding Car.ReleaseYear}"
-                     Grid.Row="3"
+                     Grid.Row="4"
                      materialDesign:HintAssist.Hint="Год выпуска"/>
         </Grid>
         <Grid Grid.Column="1">

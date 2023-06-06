@@ -47,7 +47,7 @@ namespace CarSelect.Pages
                 if (!Client.Phone.StartsWith("79"))
                     sb.AppendLine("Некорректный формат телефона");
             }
-            if (IsEmailValid(Client.Email))
+            if (!IsEmailValid(Client.Email))
                 sb.AppendLine("Некорректный email адрес");
 
 
