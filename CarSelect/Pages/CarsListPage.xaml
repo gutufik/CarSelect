@@ -39,7 +39,7 @@
         </Grid>
 
         <ListView x:Name="lvCars" ItemsSource="{Binding Cars}" Grid.Row="1"  Grid.ColumnSpan="4"
-                  HorizontalContentAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=10}"
                   SelectionChanged="lvCars_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -50,7 +50,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Width="80">
+                        <Image Width="100" VerticalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="Image">
                                     <Binding.TargetNullValue>
@@ -59,14 +59,20 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock  Grid.Column="1">
-                            <Run Text="{Binding Model.Brand.Name}"/>
-                            <Run Text="{Binding Model.Name}"/>
-                        </TextBlock>
+                        <StackPanel Grid.Column="1" Margin="10 0" VerticalAlignment="Center">
+                            <TextBlock>
+                                <Run Text="{Binding Model.Brand.Name}"/>
+                                <Run Text="{Binding Model.Name}"/>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Color}"/>
+                        </StackPanel>
 
-                        <TextBlock Grid.Column="2" Text="{Binding Description}"/>
+                        <TextBlock Text="{Binding Description}" Grid.Column="2" VerticalAlignment="Center"/>
 
-                        <TextBlock  Grid.Column="2" HorizontalAlignment="Right" Text="{Binding Price}"/>
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ReleaseYear, StringFormat={}{0} год}" HorizontalAlignment="Right" />
+                            <TextBlock Text="{Binding Price, StringFormat={}{0:N0} ₽}" HorizontalAlignment="Right" />
+                        </StackPanel>
 
                     </Grid>
                 </DataTemplate>

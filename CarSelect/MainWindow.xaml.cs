@@ -89,7 +89,12 @@ namespace CarSelect
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            frmMain.NavigationService.Navigate(new LoginPage());
+            if (MessageBox.Show("Вы точно хотите выйти?", "Подтверждение",
+                MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                App.User = null;
+                frmMain.NavigationService.Navigate(new LoginPage());
+            }
         }
     }
 }
