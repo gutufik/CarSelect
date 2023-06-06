@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:CarSelect.Pages"
       xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Выручка по сотрудникам">
 
@@ -20,6 +21,10 @@
         <lvc:PieChart x:Name="chartUsers" Grid.Row="1"
                       LegendPosition="Right" Series="{Binding Series}"/>
 
-        <Button x:Name="btnExport" HorizontalAlignment="Right" Click="btnExport_Click"/>
+        <Button x:Name="btnExport" HorizontalAlignment="Right" Click="btnExport_Click">
+            <Button.Content>
+                <materialDesign:PackIcon Kind="ContentSave" />
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>

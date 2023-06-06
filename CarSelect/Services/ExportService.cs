@@ -78,5 +78,36 @@ namespace CarSelect.Services
 
             wb.SaveAs($"{desktopPath}/Отчет по всем сотрудникам.xlsx");
         }
+
+        public static void ExportTariffsStatistics(List<Tariff> tariffs)
+        {
+            WorkBook wb = WorkBook.Create();
+
+            WorkSheet workSheet = wb.CreateWorkSheet("Отчет по тарифам");
+
+            workSheet["A1"].Value = "Тариф";
+            workSheet["B1"].Value = "Количество заказов";
+            workSheet["C1"].Value = "Общая выручка";
+
+            var row = 2;
+            foreach (var tariff in tariffs)
+            {
+                int totalRequests = tariff.Requests.Count;
+                decimal totalRevenue = tariff.Price * (decimal)tariff.Requests.Count;
+
+                workSheet[$"A{row}"].Value = tariff.Name;
+                workSheet[$"B{row}"].Value = totalRequests;
+                workSheet[$"C{row}"].Value = totalRevenue.ToString("C");
+
+                row++;
+            }
+
+            workSheet.AutoSizeColumn(0);
+            workSheet.AutoSizeColumn(1);
+            workSheet.AutoSizeColumn(2);
+
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            wb.SaveAs($"{desktopPath}/Отчет по тарифам.xlsx");
+        }
     }
 }

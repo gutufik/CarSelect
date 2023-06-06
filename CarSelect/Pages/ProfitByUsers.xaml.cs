@@ -38,7 +38,7 @@ namespace CarSelect.Pages
             {
                 Series.Add(new PieSeries<double>
                 {
-                    Values = new double[] { (double)user.Requests.Sum(r => r.Tariff.Price * (r.Car == null ? 0 : r.Car.Price)) },
+                    Values = new double[] { (double)user.Requests.Sum(r => r.Tariff.Price * (r.Car == null ? 0 : 1)) },
                     Name = user.ToString(),
                     DataLabelsFormatter = p => $"{p.PrimaryValue} / {p.StackedValue.Total} ({p.StackedValue.Share:P2})"
                 });

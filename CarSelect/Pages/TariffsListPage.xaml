@@ -36,7 +36,6 @@
                                     <materialDesign:PackIcon Kind="Menu" />
                                 </MenuItem.Icon>
                                 <MenuItem x:Name="miEdit" Header="Редактировать" Click="miEdit_Click"/>
-                                <MenuItem Header="Получить статистику" />
                             </MenuItem>
                         </Menu>
                     </Grid>

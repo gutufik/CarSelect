@@ -1,9 +1,11 @@
 ﻿using CarSelect.Data;
+using CarSelect.Services;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,13 +49,19 @@ namespace CarSelect.Pages
 
                 SumSeries.Add(new PieSeries<double>
                 {
-                    Values = new double[] { (double)tariff.Requests.Sum(r => tariff.Price * (r.Car == null ? 0 : r.Car.Price)) },
+                    Values = new double[] { (double)tariff.Requests.Sum(r => tariff.Price * (r.Car == null ? 0 : 1)) },
                     Name = tariff.Name,
                     DataLabelsFormatter = p => $"{p.PrimaryValue} / {p.StackedValue.Total} ({p.StackedValue.Share:P2})"
                 });
             }
 
             DataContext = this;
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            ExportService.ExportTariffsStatistics(Tariffs.ToList());
+            MessageBox.Show("Статистика успешно экспортирована.");
         }
     }
 }
