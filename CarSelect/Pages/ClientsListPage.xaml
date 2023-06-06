@@ -24,6 +24,7 @@
             <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" materialDesign:HintAssist.Hint="Поиск"/>
             <ComboBox x:Name="cbSort" Grid.Column="1" ItemsSource="{Binding Sortings.Keys}" 
                       SelectedIndex="0"
+                      SelectionChanged="cbSort_SelectionChanged"
                       materialDesign:HintAssist.Hint="Сортировка"/>
 
         </Grid>
@@ -65,5 +66,9 @@
         <Button x:Name="btnNewClient" VerticalAlignment="Center" Grid.Row="2" Padding="2 0" Click="btnNewClient_Click">
             <materialDesign:PackIcon Kind="Plus" Width="28" Height="28"/>
         </Button>
+
+        <StackPanel x:Name="spPagination" Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Grid.Row="2" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

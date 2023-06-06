@@ -50,6 +50,8 @@ namespace CarSelect.Pages
                 { "Без сортировки", x => x.Id },
                 { "Сначала новые", x => x.ReleaseYear },
                 { "Сначала старые", x => x.ReleaseYear },
+                { "Сначала дешевые", x => x.Price },
+                { "Сначала дорогие", x => x.Price },
             };
             DataAccess.RefreshList += DataAccess_RefreshList;
 
@@ -83,6 +85,9 @@ namespace CarSelect.Pages
                                             && (bodyType.Name == "Все" ? true : x.BodyType == bodyType)).ToList();
 
             CarsForFilters = CarsForFilters.OrderBy(Sortings[sorting]).ToList();
+
+            if (sorting.Contains("новые") || sorting.Contains("дорогие"))
+                CarsForFilters.Reverse();
 
             lvCars.ItemsSource = CarsForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvCars.Items.Refresh();

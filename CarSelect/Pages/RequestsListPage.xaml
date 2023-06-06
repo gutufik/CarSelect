@@ -23,15 +23,20 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ComboBox x:Name="cbClient" ItemsSource="{Binding Clients}" SelectedIndex="0"
+            <ComboBox x:Name="cbClient" ItemsSource="{Binding Clients}"
                       IsEditable="True"
+                      SelectionChanged="cbClient_SelectionChanged"
+                      TextBoxBase.TextChanged="cbClient_TextChanged"
                       materialDesign:HintAssist.Hint="Клиент"/>
 
-            <DatePicker x:Name="dpDate" Grid.Column="1" Language="ru"/>
+            <DatePicker x:Name="dpDate" Grid.Column="1" 
+                        SelectedDateChanged="dpDate_SelectedDateChanged"
+                        Language="ru"/>
 
             <ComboBox x:Name="cbState" ItemsSource="{Binding States}" SelectedIndex="0"
                       DisplayMemberPath="Name"
                       Grid.Column="2"
+                      SelectionChanged="cbState_SelectionChanged"
                       materialDesign:HintAssist.Hint="Статус заявки"/>
 
         </Grid>

@@ -85,7 +85,7 @@ namespace CarSelect.Pages
 
             UsersForFilters = role.Users.Where(x => x.FirstName.ToLower().Contains(search) ||
                                               x.LastName.ToLower().Contains(search) ||
-                                              x.Patronymic.ToLower().Contains(search) ||
+                                              (x.Patronymic == null? true: x.Patronymic.ToLower().Contains(search)) ||
                                               x.Login.ToLower().Contains(search)).ToList();
 
             lvUsers.ItemsSource = UsersForFilters;
