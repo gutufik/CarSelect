@@ -36,6 +36,9 @@ namespace CarSelect
 
             var visibility = content is LoginPage ? Visibility.Collapsed : Visibility.Visible;
 
+            btnUsers.Visibility = App.User != null && App.User.Role.Name == "Администратор"? Visibility.Visible:
+                                                                                             Visibility.Collapsed;
+
             spNavigation.Visibility = visibility;
             spPagination.Visibility = visibility;
 

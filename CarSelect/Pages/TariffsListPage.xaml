@@ -24,7 +24,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="{Binding ColumnWidth}"/>
                         </Grid.ColumnDefinitions>
                         
                         <TextBlock Text="{Binding Name}"/>

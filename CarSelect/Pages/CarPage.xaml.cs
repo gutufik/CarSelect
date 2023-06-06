@@ -44,7 +44,7 @@ namespace CarSelect.Pages
             else
                 Models = DataAccess.GetModels();
 
-            if (Car.Requests.Count != 0)
+            if (App.User.Role.Name == "Консультант" || Car.Requests.Count != 0)
                 this.IsEnabled = false;
 
             DataContext = this;

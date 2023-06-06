@@ -55,6 +55,9 @@ namespace CarSelect.Pages
             };
             DataAccess.RefreshList += DataAccess_RefreshList;
 
+            if (App.User.Role.Name == "Консультант")
+                btnNewCar.Visibility = Visibility.Collapsed;
+
 
             DataContext = this;
         }

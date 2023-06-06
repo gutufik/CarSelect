@@ -26,6 +26,10 @@ namespace CarSelect.Pages
         {
             InitializeComponent();
             Tariffs = DataAccess.GetTariffs();
+
+            if(App.User.Role.Name == "Консультант")
+                btnNewTariff.Visibility = Visibility.Collapsed;
+
             DataContext = this;
         }
 
