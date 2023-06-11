@@ -41,6 +41,9 @@ namespace CarSelect.Pages
 
             DataAccess.RefreshList += DataAccess_RefreshList;
 
+            if (App.User.Role.Name == "Консультант")
+                btnRequestsStatistics.Visibility = Visibility.Hidden;
+
 
             DataContext = this;
         }
@@ -49,6 +52,9 @@ namespace CarSelect.Pages
             InitializeComponent();
             Requests = requests;
             DataAccess.RefreshList += DataAccess_RefreshList;
+
+            if (App.User.Role.Name == "Консультант")
+                btnRequestsStatistics.Visibility = Visibility.Hidden;
 
 
             DataContext = this;
@@ -80,6 +86,11 @@ namespace CarSelect.Pages
 
             lvRequests.ItemsSource = RequestsForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvRequests.Items.Refresh();
+
+            if (lvRequests.Items.Count > 0)
+                tbNotFound.Visibility = Visibility.Hidden;
+            else
+                tbNotFound.Visibility = Visibility.Visible;
 
             GeneratePages();
         }

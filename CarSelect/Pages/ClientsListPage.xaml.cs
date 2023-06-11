@@ -61,7 +61,9 @@ namespace CarSelect.Pages
             if (string.IsNullOrEmpty(sorting))
                 return;
 
-            ClientsForFilters = Clients.Where(x => x.ToString().ToLower().Contains(search)).ToList();
+            ClientsForFilters = Clients.Where(x => x.FirstName.ToLower().Contains(search) ||
+                                              x.LastName.ToLower().Contains(search) ||
+                                              (x.Patronymic == null ? false : x.Patronymic.ToLower().Contains(search))).ToList();
 
 
             ClientsForFilters = ClientsForFilters.OrderBy(Sortings[sorting]).ToList();
@@ -71,6 +73,11 @@ namespace CarSelect.Pages
 
             lvClients.ItemsSource = ClientsForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvClients.Items.Refresh();
+
+            if (lvClients.Items.Count > 0)
+                tbNotFound.Visibility = Visibility.Hidden;
+            else
+                tbNotFound.Visibility = Visibility.Visible;
 
             GeneratePages();
         }

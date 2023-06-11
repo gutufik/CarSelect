@@ -26,6 +26,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             
             <ComboBox x:Name="cbBodyType" ItemsSource="{Binding BodyTypes}" 
@@ -48,9 +49,14 @@
             <TextBox x:Name="tbYear" Text="{Binding Car.ReleaseYear}"
                      Grid.Row="4"
                      materialDesign:HintAssist.Hint="Год выпуска"/>
+            <TextBox x:Name="tbMilleage" Text="{Binding Car.Mileage}"
+                     Grid.Row="5"
+                     materialDesign:HintAssist.Hint="Пробег"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -63,10 +69,18 @@
             <TextBox x:Name="tbEngineVolume" Text="{Binding Car.EngineVolume}"
                      Grid.Row="1"
                      materialDesign:HintAssist.Hint="Объем двигателя"/>
+            <ComboBox x:Name="cbDriveType" ItemsSource="{Binding DriveTypes}" 
+                      DisplayMemberPath="Name" Grid.Row="2"
+                      SelectedItem="{Binding Car.DriveType}"
+                      materialDesign:HintAssist.Hint="Тип привода"/>
+            <ComboBox x:Name="cbGBType" ItemsSource="{Binding GBTypes}" 
+                      DisplayMemberPath="Name" Grid.Row="3"
+                      SelectedItem="{Binding Car.GBType}"
+                      materialDesign:HintAssist.Hint="КПП"/>
             <TextBox x:Name="tbPrice" Text="{Binding Car.Price}"
-                     Grid.Row="2"
+                     Grid.Row="4"
                      materialDesign:HintAssist.Hint="Цена"/>
-            <ScrollViewer Grid.Row="3">
+            <ScrollViewer Grid.Row="5">
                 <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}" Margin="10 20 10 10"
                          AcceptsReturn="True" TextWrapping="Wrap"
                          materialDesign:HintAssist.Hint="Описание"/>

@@ -37,6 +37,9 @@ namespace CarSelect.Pages
             Roles = DataAccess.GetRoles();
             Roles.Insert(0, new Role { Name = "Все роли", Users = Users });
 
+            if (App.User.Role.Name == "Консультант")
+                btnUsersStatistic.Visibility = Visibility.Hidden;
+
             DataAccess.RefreshList += DataAccess_RefreshList;
 
             DataContext = this;
@@ -91,11 +94,16 @@ namespace CarSelect.Pages
 
             UsersForFilters = role.Users.Where(x => x.FirstName.ToLower().Contains(search) ||
                                               x.LastName.ToLower().Contains(search) ||
-                                              (x.Patronymic == null? true: x.Patronymic.ToLower().Contains(search)) ||
+                                              (x.Patronymic == null? false: x.Patronymic.ToLower().Contains(search)) ||
                                               x.Login.ToLower().Contains(search)).ToList();
 
             lvUsers.ItemsSource = UsersForFilters;
             lvUsers.Items.Refresh();
+
+            if (lvUsers.Items.Count > 0)
+                tbNotFound.Visibility = Visibility.Hidden;
+            else
+                tbNotFound.Visibility = Visibility.Visible;
 
             GeneratePages();
         }

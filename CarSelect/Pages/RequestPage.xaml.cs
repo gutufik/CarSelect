@@ -27,7 +27,13 @@ namespace CarSelect.Pages
         public List<State> States { get; set; }
         public List<Client> Clients { get; set; }
         public List<Car> Cars { get; set; }
+        public List<FuelType> FuelTypes { get; set; }
         public List<Tariff> Tariffs { get; set; }
+        public List<DriveType> DriveTypes { get; set; }
+        public List<GBType> GBTypes { get; set; }
+        public List<BodyType> BodyTypes { get; set; }
+        public List<Brand> Brands { get; set; }
+        public List<Model> Models { get; set; }
 
         public RequestPage(Request request)
         {
@@ -37,7 +43,13 @@ namespace CarSelect.Pages
             States = DataAccess.GetStates();
             Clients = DataAccess.GetClients();
             Cars = DataAccess.GetCars();
+            FuelTypes = DataAccess.GetFuelTypes();
             Tariffs = DataAccess.GetTariffs();
+            DriveTypes = DataAccess.GetDriveTypes();
+            GBTypes = DataAccess.GetGBTypes();
+            BodyTypes = DataAccess.GetBodyTypes();
+            Brands = DataAccess.GetBrands();
+            Models = DataAccess.GetModels();
 
             dpStartDate.DisplayDateStart = DateTime.Now;
             dpEndDate.DisplayDateStart = request.Id == 0 ? DateTime.Now : request.StartDate;
@@ -77,7 +89,7 @@ namespace CarSelect.Pages
 
         private void btnSendEmail_Click(object sender, RoutedEventArgs e)
         {
-            if (EmailService.SendEmail("gutufik@mail.ru", "qwe", "qwe"))
+            if (EmailService.SendEmail(Request))
             {
                 MessageBox.Show("Ok");
             }

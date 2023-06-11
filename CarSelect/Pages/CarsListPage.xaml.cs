@@ -22,7 +22,7 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class CarsListPage : Page
     {
-        private int ITEMSONPAGE = 2;
+        private int ITEMSONPAGE = 6;
         private int _page = 0;
         private int pagesCount => (CarsForFilters.Count / ITEMSONPAGE) + (CarsForFilters.Count % ITEMSONPAGE == 0 ? 0 : 1);
 
@@ -31,6 +31,8 @@ namespace CarSelect.Pages
         public List<Brand> Brands { get; set; }
         public List<Model> Models { get; set; }
         public List<BodyType> BodyTypes { get; set; }
+        public List<DriveType> DriveTypes { get; set; }
+        public List<GBType> GBTypes { get; set; }
         public Dictionary<string, Func<Car, object>> Sortings { get; set; }
 
 
@@ -44,6 +46,13 @@ namespace CarSelect.Pages
 
             BodyTypes = DataAccess.GetBodyTypes();
             BodyTypes.Insert(0, new BodyType { Name = "Все" });
+
+            DriveTypes = DataAccess.GetDriveTypes();
+            DriveTypes.Insert(0, new DriveType { Name = "Все" });
+
+            GBTypes = DataAccess.GetGBTypes();
+            GBTypes.Insert(0, new GBType { Name = "Все" });
+
 
             Sortings = new Dictionary<string, Func<Car, object>>()
             {
@@ -79,13 +88,17 @@ namespace CarSelect.Pages
             var bodyType = cbBodyType.SelectedItem as BodyType;
             var brand = cbBrand.SelectedItem as Brand;
             var model = cbModel.SelectedItem as Model;
+            var driveType = cbDriveType.SelectedItem as DriveType;
+            var gbType = cbGBType.SelectedItem as GBType;
             var sorting = cbSort.SelectedItem as string;
 
-            if (string.IsNullOrEmpty(sorting) || bodyType == null || brand == null || model == null)
+            if (string.IsNullOrEmpty(sorting) || bodyType == null || brand == null || model == null || gbType == null || driveType == null)
                 return;
 
             CarsForFilters = model.Cars.Where(x => (x.Model.Name.ToLower().Contains(search) || x.Model.Brand.Name.ToLower().Contains(search))
                                             && (brand.Name == "Все" ? true : x.Model.Brand == brand)
+                                            && (driveType.Name == "Все" ? true : x.DriveType == driveType)
+                                            && (gbType.Name == "Все" ? true : x.GBType == gbType)
                                             && (bodyType.Name == "Все" ? true : x.BodyType == bodyType)).ToList();
 
             CarsForFilters = CarsForFilters.OrderBy(Sortings[sorting]).ToList();
@@ -95,6 +108,11 @@ namespace CarSelect.Pages
 
             lvCars.ItemsSource = CarsForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvCars.Items.Refresh();
+
+            if (lvCars.Items.Count > 0)
+                tbNotFound.Visibility = Visibility.Hidden;
+            else
+                tbNotFound.Visibility = Visibility.Visible;
 
             GeneratePages();
         }
@@ -200,6 +218,21 @@ namespace CarSelect.Pages
             {
                 Title = "Новый автомобиль"
             });
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            gridSearch.Visibility = gridSearch.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void cbDriveType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void cbGBType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
         }
     }
 }

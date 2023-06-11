@@ -40,8 +40,12 @@
                       materialDesign:HintAssist.Hint="Статус заявки"/>
 
         </Grid>
-        
-        
+
+        <TextBlock x:Name="tbNotFound" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Visibility="Hidden"
+                   Text="По вашему запросу ничего не найдено"/>
+
+
         <ListView x:Name="lvRequests" ItemsSource="{Binding Requests}"
                   Grid.Row="1" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>

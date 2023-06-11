@@ -27,6 +27,10 @@
                       materialDesign:HintAssist.Hint="Сортировка"/>
         </Grid>
 
+        <TextBlock x:Name="tbNotFound" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Visibility="Hidden"
+                   Text="По вашему запросу ничего не найдено"/>
+
         <ListView x:Name="lvClients" ItemsSource="{Binding Clients}" Grid.Row="1"
                   HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
@@ -36,11 +40,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock>
+                        <TextBlock TextWrapping="Wrap">
                             <Run Text="{Binding LastName}"/>
                             <Run Text="{Binding FirstName}"/>
                             <Run Text="{Binding Patronymic}"/>

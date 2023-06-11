@@ -28,6 +28,8 @@ namespace CarSelect.Pages
         public List<Brand> Brands { get; set; }
         public List<Model> Models { get; set; }
         public List<FuelType> FuelTypes { get; set; }
+        public List<Data.DriveType> DriveTypes { get; set; }
+        public List<GBType> GBTypes { get; set; }
 
         public Car Car { get; set; }
 
@@ -38,6 +40,8 @@ namespace CarSelect.Pages
             BodyTypes = DataAccess.GetBodyTypes();
             Brands = DataAccess.GetBrands();
             FuelTypes = DataAccess.GetFuelTypes();
+            DriveTypes = DataAccess.GetDriveTypes();
+            GBTypes = DataAccess.GetGBTypes();
 
             if (Car.Model !=  null)
                 Models = Car.Model.Brand.Models.ToList();
@@ -79,10 +83,16 @@ namespace CarSelect.Pages
                 sb.AppendLine("Год выпуска не может превышать текущий год");
             else if (Car.ReleaseYear < 1806)
                 sb.AppendLine("В указанный год не выпускались автомобили");
+            if (Car.Mileage < 0)
+                sb.AppendLine("Пробег не может быть меньше 0");
             if (Car.FuelType == null)
                 sb.AppendLine("Необходимо выбрать Тип топлива");
             if (string.IsNullOrWhiteSpace(Car.Color))
                 sb.AppendLine("Необходимо указать Цвет");
+            if (Car.DriveType == null)
+                sb.AppendLine("Необходимо выбрать Тип привода");
+            if (Car.GBType == null)
+                sb.AppendLine("Необходимо выбрать КПП");
             if (Car.EngineVolume <= 0)
                 sb.AppendLine("Объем двигателя должен превышать 0");
             if (Car.Price <= 0)
