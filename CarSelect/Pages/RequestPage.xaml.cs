@@ -27,6 +27,8 @@ namespace CarSelect.Pages
         public List<Client> Clients { get; set; }
         public List<Car> Cars { get; set; }
         public List<Tariff> Tariffs { get; set; }
+        public List<DriveType> DriveTypes { get; set; }
+        public List<GBType> GBTypes { get; set; }
 
         public RequestPage(Request request)
         {
@@ -37,6 +39,8 @@ namespace CarSelect.Pages
             Clients = DataAccess.GetClients();
             Cars = DataAccess.GetCars();
             Tariffs = DataAccess.GetTariffs();
+            DriveTypes = DataAccess.GetDriveTypes();
+            GBTypes = DataAccess.GetGBTypes();
 
             dpStartDate.DisplayDateStart = DateTime.Now;
             dpEndDate.DisplayDateStart = request.Id == 0 ? DateTime.Now : request.StartDate;

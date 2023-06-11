@@ -21,8 +21,10 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="btnSearch" Content="Поиск" Grid.ColumnSpan="2" HorizontalAlignment="Left" Click="btnSearch_Click"/>
-        <Grid x:Name="gridSearch" Grid.RowSpan="2" Grid.Row="1">
+        <Grid x:Name="gridSearch" Grid.RowSpan="2" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -37,15 +39,21 @@
             <ComboBox x:Name="cbBrand" Grid.Row="2" ItemsSource="{Binding Brands}" SelectedIndex="0"
                   SelectionChanged="cbBrand_SelectionChanged" materialDesign:HintAssist.Hint="Марка"
                   DisplayMemberPath="Name"/>
-            <ComboBox x:Name="cbModel" Grid.Row="3" ItemsSource="{Binding Models}" SelectedIndex="0"
+            <ComboBox x:Name="cbDriveType" Grid.Row="3" ItemsSource="{Binding DriveTypes}" SelectedIndex="0"
+                  SelectionChanged="cbDriveType_SelectionChanged" materialDesign:HintAssist.Hint="Тип привода"
+                  DisplayMemberPath="Name"/>
+            <ComboBox x:Name="cbGBType" Grid.Row="4" ItemsSource="{Binding GBTypes}" SelectedIndex="0"
+                  SelectionChanged="cbGBType_SelectionChanged" materialDesign:HintAssist.Hint="КПП"
+                  DisplayMemberPath="Name"/>
+            <ComboBox x:Name="cbModel" Grid.Row="5" ItemsSource="{Binding Models}" SelectedIndex="0"
                   SelectionChanged="cbModel_SelectionChanged" materialDesign:HintAssist.Hint="Модель"
                   DisplayMemberPath="Name"/>
-            <ComboBox x:Name="cbSort" Grid.Row="4" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
+            <ComboBox x:Name="cbSort" Grid.Row="6" ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
                   SelectionChanged="cbSort_SelectionChanged" materialDesign:HintAssist.Hint="Сортировка"/>
         </Grid>
 
         <ListView x:Name="lvCars" ItemsSource="{Binding Cars}" Grid.Row="1" Grid.Column="1"
-                  HorizontalContentAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=10}"
                   SelectionChanged="lvCars_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -59,9 +67,10 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Width="100" VerticalAlignment="Center">
+                        <Image Width="80" VerticalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="Image">
                                     <Binding.TargetNullValue>
@@ -78,9 +87,12 @@
                             <TextBlock Text="{Binding Color}"/>
                         </StackPanel>
 
-                        <TextBlock Text="{Binding Description}" Grid.Column="2" VerticalAlignment="Center"/>
-
                         <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding GBType.Name}"/>
+                            <TextBlock Text="{Binding DriveType.Name}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" VerticalAlignment="Center">
                             <TextBlock Text="{Binding ReleaseYear, StringFormat={}{0} год}" HorizontalAlignment="Right" />
                             <TextBlock Text="{Binding Price, StringFormat={}{0:N0} ₽}" HorizontalAlignment="Right" />
                         </StackPanel>
