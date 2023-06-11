@@ -72,6 +72,7 @@
         </Grid>
 
         <Button x:Name="btnSave" Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="1" Click="btnSave_Click"/>
+        <Button x:Name="btnSendEmail" Content="Email" HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.Row="1" Click="btnSendEmail_Click"/>
 
     </Grid>
 </Page>

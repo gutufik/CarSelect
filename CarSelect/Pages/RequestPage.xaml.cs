@@ -1,4 +1,5 @@
 ﻿using CarSelect.Data;
+using CarSelect.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,16 @@ namespace CarSelect.Pages
 
             DataAccess.SaveRequest(Request);
             NavigationService.GoBack();
+        }
+
+        private void btnSendEmail_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmailService.SendEmail("gutufik@mail.ru", "qwe", "qwe"))
+            {
+                MessageBox.Show("Ok");
+            }
+            else
+                MessageBox.Show("Not ok");
         }
     }
 }
