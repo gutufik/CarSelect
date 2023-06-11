@@ -14,6 +14,8 @@ namespace CarSelect.Data
 
         public static List<Car> GetCars() => CarSelectEntities.GetContext().Cars.ToList();
         public static List<Model> GetModels() => CarSelectEntities.GetContext().Models.ToList();
+        public static List<DriveType> GetDriveTypes() => CarSelectEntities.GetContext().DriveTypes.ToList();
+        public static List<GBType> GetGBTypes() => CarSelectEntities.GetContext().GBTypes.ToList();
         public static List<Brand> GetBrands() => CarSelectEntities.GetContext().Brands.ToList();
         public static List<Tariff> GetTariffs() => CarSelectEntities.GetContext().Tariffs.ToList();
         public static List<Request> GetRequests() => CarSelectEntities.GetContext().Requests.ToList();

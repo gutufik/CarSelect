@@ -18,6 +18,7 @@ namespace CarSelect.Data
         public Brand()
         {
             this.Models = new HashSet<Model>();
+            this.Requests = new HashSet<Request>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace CarSelect.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Model> Models { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

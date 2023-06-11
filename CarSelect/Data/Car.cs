@@ -30,9 +30,14 @@ namespace CarSelect.Data
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public Nullable<decimal> Price { get; set; }
+        public Nullable<int> Mileage { get; set; }
+        public Nullable<int> GBTypeId { get; set; }
+        public Nullable<int> DriveTypeId { get; set; }
     
         public virtual BodyType BodyType { get; set; }
+        public virtual DriveType DriveType { get; set; }
         public virtual FuelType FuelType { get; set; }
+        public virtual GBType GBType { get; set; }
         public virtual Model Model { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }

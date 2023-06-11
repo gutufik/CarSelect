@@ -29,7 +29,9 @@ namespace CarSelect.Data
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<DriveType> DriveTypes { get; set; }
         public virtual DbSet<FuelType> FuelTypes { get; set; }
+        public virtual DbSet<GBType> GBTypes { get; set; }
         public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
