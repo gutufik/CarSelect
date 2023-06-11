@@ -18,6 +18,7 @@ namespace CarSelect.Data
         public BodyType()
         {
             this.Cars = new HashSet<Car>();
+            this.Requests = new HashSet<Request>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace CarSelect.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

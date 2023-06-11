@@ -23,9 +23,22 @@ namespace CarSelect.Data
         public Nullable<int> ConsultantId { get; set; }
         public Nullable<int> StateId { get; set; }
         public string Description { get; set; }
+        public Nullable<int> FuelTypeId { get; set; }
+        public Nullable<int> GBTypeId { get; set; }
+        public Nullable<int> BodyTypeId { get; set; }
+        public Nullable<int> BrandId { get; set; }
+        public Nullable<int> ModelId { get; set; }
+        public Nullable<int> DriveTypeId { get; set; }
+        public Nullable<int> Milleage { get; set; }
     
+        public virtual BodyType BodyType { get; set; }
+        public virtual Brand Brand { get; set; }
         public virtual Car Car { get; set; }
         public virtual Client Client { get; set; }
+        public virtual DriveType DriveType { get; set; }
+        public virtual FuelType FuelType { get; set; }
+        public virtual GBType GBType { get; set; }
+        public virtual Model Model { get; set; }
         public virtual State State { get; set; }
         public virtual Tariff Tariff { get; set; }
         public virtual User User { get; set; }

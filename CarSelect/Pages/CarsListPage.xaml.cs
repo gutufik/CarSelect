@@ -22,7 +22,7 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class CarsListPage : Page
     {
-        private int ITEMSONPAGE = 10;
+        private int ITEMSONPAGE = 2;
         private int _page = 0;
         private int pagesCount => (CarsForFilters.Count / ITEMSONPAGE) + (CarsForFilters.Count % ITEMSONPAGE == 0 ? 0 : 1);
 

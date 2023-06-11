@@ -33,6 +33,9 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mileage" Type="int" />
+          <Property Name="GBTypeId" Type="int" />
+          <Property Name="DriveTypeId" Type="int" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -46,12 +49,26 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="DriveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="FuelType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GBType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
@@ -74,6 +91,13 @@
           <Property Name="ConsultantId" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="FuelTypeId" Type="int" />
+          <Property Name="GBTypeId" Type="int" />
+          <Property Name="BodyTypeId" Type="int" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="ModelId" Type="int" />
+          <Property Name="DriveTypeId" Type="int" />
+          <Property Name="Milleage" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -132,6 +156,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Car_DriveType">
+          <End Role="DriveType" Type="Self.DriveType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="DriveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Car_Gas">
           <End Role="FuelType" Type="Self.FuelType" Multiplicity="1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
@@ -141,6 +177,18 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_GBType">
+          <End Role="GBType" Type="Self.GBType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GBType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="GBTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -168,6 +216,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Request_BodyType">
+          <End Role="BodyType" Type="Self.BodyType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="BodyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Request_Car">
           <End Role="Car" Type="Self.Car" Multiplicity="1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -189,6 +261,54 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_DriveType">
+          <End Role="DriveType" Type="Self.DriveType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="DriveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_FuelType">
+          <End Role="FuelType" Type="Self.FuelType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_GBType">
+          <End Role="GBType" Type="Self.GBType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GBType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="GBTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -245,7 +365,9 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriveType" EntityType="Self.DriveType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuelType" EntityType="Self.FuelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GBType" EntityType="Self.GBType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -257,8 +379,16 @@
             <End Role="BodyType" EntitySet="BodyType" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
+          <AssociationSet Name="FK_Car_DriveType" Association="Self.FK_Car_DriveType">
+            <End Role="DriveType" EntitySet="DriveType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
           <AssociationSet Name="FK_Car_Gas" Association="Self.FK_Car_Gas">
             <End Role="FuelType" EntitySet="FuelType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_GBType" Association="Self.FK_Car_GBType">
+            <End Role="GBType" EntitySet="GBType" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Model" Association="Self.FK_Car_Model">
@@ -269,12 +399,36 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Model" EntitySet="Model" />
           </AssociationSet>
+          <AssociationSet Name="FK_Request_BodyType" Association="Self.FK_Request_BodyType">
+            <End Role="BodyType" EntitySet="BodyType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Brand" Association="Self.FK_Request_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
           <AssociationSet Name="FK_Request_Car" Association="Self.FK_Request_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Client" Association="Self.FK_Request_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_DriveType" Association="Self.FK_Request_DriveType">
+            <End Role="DriveType" EntitySet="DriveType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_FuelType" Association="Self.FK_Request_FuelType">
+            <End Role="FuelType" EntitySet="FuelType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_GBType" Association="Self.FK_Request_GBType">
+            <End Role="GBType" EntitySet="GBType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Model" Association="Self.FK_Request_Model">
+            <End Role="Model" EntitySet="Model" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_State" Association="Self.FK_Request_State">
@@ -303,7 +457,9 @@
           <EntitySet Name="Brands" EntityType="CarSelectModel.Brand" />
           <EntitySet Name="Cars" EntityType="CarSelectModel.Car" />
           <EntitySet Name="Clients" EntityType="CarSelectModel.Client" />
+          <EntitySet Name="DriveTypes" EntityType="CarSelectModel.DriveType" />
           <EntitySet Name="FuelTypes" EntityType="CarSelectModel.FuelType" />
+          <EntitySet Name="GBTypes" EntityType="CarSelectModel.GBType" />
           <EntitySet Name="Models" EntityType="CarSelectModel.Model" />
           <EntitySet Name="Requests" EntityType="CarSelectModel.Request" />
           <EntitySet Name="Roles" EntityType="CarSelectModel.Role" />
@@ -315,12 +471,28 @@
             <End Role="BodyType" EntitySet="BodyTypes" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
+          <AssociationSet Name="FK_Request_BodyType" Association="CarSelectModel.FK_Request_BodyType">
+            <End Role="BodyType" EntitySet="BodyTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Model_Brand" Association="CarSelectModel.FK_Model_Brand">
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Model" EntitySet="Models" />
           </AssociationSet>
+          <AssociationSet Name="FK_Request_Brand" Association="CarSelectModel.FK_Request_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_DriveType" Association="CarSelectModel.FK_Car_DriveType">
+            <End Role="DriveType" EntitySet="DriveTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
           <AssociationSet Name="FK_Car_Gas" Association="CarSelectModel.FK_Car_Gas">
             <End Role="FuelType" EntitySet="FuelTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_GBType" Association="CarSelectModel.FK_Car_GBType">
+            <End Role="GBType" EntitySet="GBTypes" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Model" Association="CarSelectModel.FK_Car_Model">
@@ -333,6 +505,22 @@
           </AssociationSet>
           <AssociationSet Name="FK_Request_Client" Association="CarSelectModel.FK_Request_Client">
             <End Role="Client" EntitySet="Clients" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_DriveType" Association="CarSelectModel.FK_Request_DriveType">
+            <End Role="DriveType" EntitySet="DriveTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_FuelType" Association="CarSelectModel.FK_Request_FuelType">
+            <End Role="FuelType" EntitySet="FuelTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_GBType" Association="CarSelectModel.FK_Request_GBType">
+            <End Role="GBType" EntitySet="GBTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Model" Association="CarSelectModel.FK_Request_Model">
+            <End Role="Model" EntitySet="Models" />
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_State" Association="CarSelectModel.FK_Request_State">
@@ -359,6 +547,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_BodyType" FromRole="BodyType" ToRole="Car" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_BodyType" FromRole="BodyType" ToRole="Request" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -367,6 +556,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Models" Relationship="CarSelectModel.FK_Model_Brand" FromRole="Brand" ToRole="Model" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Brand" FromRole="Brand" ToRole="Request" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -382,8 +572,13 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mileage" Type="Int32" />
+          <Property Name="GBTypeId" Type="Int32" />
+          <Property Name="DriveTypeId" Type="Int32" />
           <NavigationProperty Name="BodyType" Relationship="CarSelectModel.FK_Car_BodyType" FromRole="Car" ToRole="BodyType" />
+          <NavigationProperty Name="DriveType" Relationship="CarSelectModel.FK_Car_DriveType" FromRole="Car" ToRole="DriveType" />
           <NavigationProperty Name="FuelType" Relationship="CarSelectModel.FK_Car_Gas" FromRole="Car" ToRole="FuelType" />
+          <NavigationProperty Name="GBType" Relationship="CarSelectModel.FK_Car_GBType" FromRole="Car" ToRole="GBType" />
           <NavigationProperty Name="Model" Relationship="CarSelectModel.FK_Car_Model" FromRole="Car" ToRole="Model" />
           <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Car" FromRole="Car" ToRole="Request" />
         </EntityType>
@@ -400,6 +595,15 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Client" FromRole="Client" ToRole="Request" />
         </EntityType>
+        <EntityType Name="DriveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_DriveType" FromRole="DriveType" ToRole="Car" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_DriveType" FromRole="DriveType" ToRole="Request" />
+        </EntityType>
         <EntityType Name="FuelType">
           <Key>
             <PropertyRef Name="Id" />
@@ -407,6 +611,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_Gas" FromRole="FuelType" ToRole="Car" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_FuelType" FromRole="FuelType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="GBType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_GBType" FromRole="GBType" ToRole="Car" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_GBType" FromRole="GBType" ToRole="Request" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
@@ -417,6 +631,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Brand" Relationship="CarSelectModel.FK_Model_Brand" FromRole="Model" ToRole="Brand" />
           <NavigationProperty Name="Cars" Relationship="CarSelectModel.FK_Car_Model" FromRole="Model" ToRole="Car" />
+          <NavigationProperty Name="Requests" Relationship="CarSelectModel.FK_Request_Model" FromRole="Model" ToRole="Request" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -431,8 +646,21 @@
           <Property Name="ConsultantId" Type="Int32" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FuelTypeId" Type="Int32" />
+          <Property Name="GBTypeId" Type="Int32" />
+          <Property Name="BodyTypeId" Type="Int32" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="ModelId" Type="Int32" />
+          <Property Name="DriveTypeId" Type="Int32" />
+          <Property Name="Milleage" Type="Int32" />
+          <NavigationProperty Name="BodyType" Relationship="CarSelectModel.FK_Request_BodyType" FromRole="Request" ToRole="BodyType" />
+          <NavigationProperty Name="Brand" Relationship="CarSelectModel.FK_Request_Brand" FromRole="Request" ToRole="Brand" />
           <NavigationProperty Name="Car" Relationship="CarSelectModel.FK_Request_Car" FromRole="Request" ToRole="Car" />
           <NavigationProperty Name="Client" Relationship="CarSelectModel.FK_Request_Client" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="DriveType" Relationship="CarSelectModel.FK_Request_DriveType" FromRole="Request" ToRole="DriveType" />
+          <NavigationProperty Name="FuelType" Relationship="CarSelectModel.FK_Request_FuelType" FromRole="Request" ToRole="FuelType" />
+          <NavigationProperty Name="GBType" Relationship="CarSelectModel.FK_Request_GBType" FromRole="Request" ToRole="GBType" />
+          <NavigationProperty Name="Model" Relationship="CarSelectModel.FK_Request_Model" FromRole="Request" ToRole="Model" />
           <NavigationProperty Name="State" Relationship="CarSelectModel.FK_Request_State" FromRole="Request" ToRole="State" />
           <NavigationProperty Name="Tariff" Relationship="CarSelectModel.FK_Request_Tariff" FromRole="Request" ToRole="Tariff" />
           <NavigationProperty Name="User" Relationship="CarSelectModel.FK_Request_User" FromRole="Request" ToRole="User" />
@@ -499,6 +727,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Request_BodyType">
+          <End Type="CarSelectModel.BodyType" Role="BodyType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="BodyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Model_Brand">
           <End Type="CarSelectModel.Brand" Role="Brand" Multiplicity="1" />
           <End Type="CarSelectModel.Model" Role="Model" Multiplicity="*" />
@@ -511,6 +751,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Request_Brand">
+          <End Type="CarSelectModel.Brand" Role="Brand" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_DriveType">
+          <End Type="CarSelectModel.DriveType" Role="DriveType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="DriveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Car_Gas">
           <End Type="CarSelectModel.FuelType" Role="FuelType" Multiplicity="1" />
           <End Type="CarSelectModel.Car" Role="Car" Multiplicity="*" />
@@ -520,6 +784,18 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_GBType">
+          <End Type="CarSelectModel.GBType" Role="GBType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GBType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="GBTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -556,6 +832,54 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_DriveType">
+          <End Type="CarSelectModel.DriveType" Role="DriveType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="DriveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_FuelType">
+          <End Type="CarSelectModel.FuelType" Role="FuelType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FuelType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_GBType">
+          <End Type="CarSelectModel.GBType" Role="GBType" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GBType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="GBTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Model">
+          <End Type="CarSelectModel.Model" Role="Model" Multiplicity="0..1" />
+          <End Type="CarSelectModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -632,6 +956,9 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarSelectModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="DriveTypeId" ColumnName="DriveTypeId" />
+                <ScalarProperty Name="GBTypeId" ColumnName="GBTypeId" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -658,9 +985,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DriveTypes">
+            <EntityTypeMapping TypeName="CarSelectModel.DriveType">
+              <MappingFragment StoreEntitySet="DriveType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FuelTypes">
             <EntityTypeMapping TypeName="CarSelectModel.FuelType">
               <MappingFragment StoreEntitySet="FuelType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GBTypes">
+            <EntityTypeMapping TypeName="CarSelectModel.GBType">
+              <MappingFragment StoreEntitySet="GBType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -678,6 +1021,13 @@
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="CarSelectModel.Request">
               <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Milleage" ColumnName="Milleage" />
+                <ScalarProperty Name="DriveTypeId" ColumnName="DriveTypeId" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BodyTypeId" ColumnName="BodyTypeId" />
+                <ScalarProperty Name="GBTypeId" ColumnName="GBTypeId" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
