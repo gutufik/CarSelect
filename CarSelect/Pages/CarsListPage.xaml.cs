@@ -201,5 +201,10 @@ namespace CarSelect.Pages
                 Title = "Новый автомобиль"
             });
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            gridSearch.Visibility = gridSearch.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
     }
 }
