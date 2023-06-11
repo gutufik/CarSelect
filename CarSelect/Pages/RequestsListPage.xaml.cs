@@ -137,7 +137,10 @@ namespace CarSelect.Pages
         private void btnNewRequest_Click(object sender, RoutedEventArgs e)
         {
             var request = new Request() { User = App.User, StartDate = DateTime.Now };
-            NavigationService.Navigate(new RequestPage(request));
+            NavigationService.Navigate(new RequestPage(request)
+            {
+                Title = "Новая заявка"
+            });
         }
 
         private void miEdit_Click(object sender, RoutedEventArgs e)
@@ -145,7 +148,10 @@ namespace CarSelect.Pages
             var request = (sender as MenuItem).DataContext as Request;
 
             if (request != null)
-                NavigationService.Navigate(new RequestPage(request));
+                NavigationService.Navigate(new RequestPage(request)
+                {
+                    Title = $"Заявка №{request.Id}"
+                });
         }
 
         private void btnRequestsStatistics_Click(object sender, RoutedEventArgs e)

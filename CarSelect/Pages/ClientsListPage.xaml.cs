@@ -133,7 +133,10 @@ namespace CarSelect.Pages
 
             if (client != null)
             {
-                NavigationService.Navigate(new ClientPage(client));
+                NavigationService.Navigate(new ClientPage(client)
+                {
+                    Title = client.ToString()
+                });
             }
         }
 
@@ -143,7 +146,10 @@ namespace CarSelect.Pages
 
             if (client != null)
             {
-                NavigationService.Navigate(new RequestsListPage(client.Requests.ToList()));
+                NavigationService.Navigate(new RequestsListPage(client.Requests.ToList())
+                {
+                    Title = $"Заявки клиента {client.ToString()}"
+                });
             }
         }
 
@@ -159,7 +165,10 @@ namespace CarSelect.Pages
             if (client != null)
             {
                 var request = new Request() { Client = client, User = App.User, StartDate = DateTime.Now };
-                NavigationService.Navigate(new RequestPage(request));
+                NavigationService.Navigate(new RequestPage(request)
+                {
+                    Title = $"Новая заявка для {client.ToString()}"
+                });
             }
         }
 

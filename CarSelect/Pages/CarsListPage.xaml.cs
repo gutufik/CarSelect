@@ -158,7 +158,10 @@ namespace CarSelect.Pages
         {
             var car = lvCars.SelectedItem as Car;
             if (car != null)
-                NavigationService.Navigate(new CarPage(car));
+                NavigationService.Navigate(new CarPage(car)
+                {
+                    Title = car.ToString()
+                });
 
             lvCars.SelectedIndex = -1;
         }
@@ -193,7 +196,10 @@ namespace CarSelect.Pages
 
         private void btnNewCar_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CarPage(new Car()));
+            NavigationService.Navigate(new CarPage(new Car())
+            {
+                Title = "Новый автомобиль"
+            });
         }
     }
 }

@@ -55,7 +55,10 @@ namespace CarSelect.Pages
             var user = (sender as MenuItem).DataContext as User;
 
             if (user != null)
-                NavigationService.Navigate(new UserPage(user));
+                NavigationService.Navigate(new UserPage(user)
+                {
+                    Title = $"{user.LastName} {user.FirstName}"
+                });
         }
 
         private void miRequestsStatistic_Click(object sender, RoutedEventArgs e)
@@ -69,7 +72,10 @@ namespace CarSelect.Pages
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new UserPage(new User()));
+            NavigationService.Navigate(new UserPage(new User())
+            {
+                Title = "Новый пользователь"
+            });
         }
 
         private void ApplyFilters(bool filtersChanged = true)

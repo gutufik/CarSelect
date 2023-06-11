@@ -37,12 +37,18 @@ namespace CarSelect.Pages
         {
             var tariff = (sender as MenuItem).DataContext as Tariff;
             if (tariff != null)
-                NavigationService.Navigate(new TariffPage(tariff));
+                NavigationService.Navigate(new TariffPage(tariff)
+                {
+                    Title = $"Тариф {tariff.Name}" 
+                });
         }
 
         private void btnNewTariff_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TariffPage(new Tariff()));
+            NavigationService.Navigate(new TariffPage(new Tariff())
+            {
+                Title = "Новый тариф"
+            });
         }
 
         private void btnTariffsStatistics_Click(object sender, RoutedEventArgs e)

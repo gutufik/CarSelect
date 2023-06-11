@@ -8,7 +8,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Клиенты">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,10 +25,8 @@
                       SelectedIndex="0"
                       SelectionChanged="cbSort_SelectionChanged"
                       materialDesign:HintAssist.Hint="Сортировка"/>
-
         </Grid>
-        
-        
+
         <ListView x:Name="lvClients" ItemsSource="{Binding Clients}" Grid.Row="1"
                   HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
@@ -43,7 +40,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding}"/>
+                        <TextBlock>
+                            <Run Text="{Binding LastName}"/>
+                            <Run Text="{Binding FirstName}"/>
+                            <Run Text="{Binding Patronymic}"/>
+                        </TextBlock>
                         <TextBlock Grid.Column="1" Text="{Binding Phone}"/>
                         <TextBlock Grid.Column="2" Text="{Binding Email}"/>
 
