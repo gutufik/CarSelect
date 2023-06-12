@@ -42,10 +42,8 @@ namespace CarSelect.Pages
                 sb.AppendLine("Необходимо заполнить телефон");
             else
             {
-                if (Client.Phone.Length != 11)
+                if (Client.Phone.Length != 16)
                     sb.AppendLine("Некорректная длина телефона");
-                if (!Client.Phone.StartsWith("79"))
-                    sb.AppendLine("Некорректный формат телефона");
             }
             if (!IsEmailValid(Client.Email))
                 sb.AppendLine("Некорректный email адрес");
@@ -61,10 +59,6 @@ namespace CarSelect.Pages
             NavigationService.GoBack();
         }
 
-        private void tbPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
-        }
 
         private bool IsEmailValid(string email)
         {

@@ -91,10 +91,10 @@ namespace CarSelect.Pages
         {
             if (EmailService.SendEmail(Request))
             {
-                MessageBox.Show("Ok");
+                MessageBox.Show("Письмо успешно отправлено.");
             }
             else
-                MessageBox.Show("Not ok");
+                MessageBox.Show("Произошла ошибка при отправке письма.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
