@@ -190,5 +190,17 @@ namespace CarSelect.Pages
             cbClient.ItemsSource = Clients.Where(p => p.ToString().ToLower().Contains(cbClient.Text.ToLower())).ToList();
             cbClient.IsDropDownOpen = true;
         }
+
+        private void lvRequests_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var request = lvRequests.SelectedItem as Request;
+
+            if (request != null)
+                NavigationService.Navigate(new RequestPage(request)
+                {
+                    Title = $"Заявка №{request.Id}"
+                });
+            lvRequests.SelectedIndex = -1;
+        }
     }
 }

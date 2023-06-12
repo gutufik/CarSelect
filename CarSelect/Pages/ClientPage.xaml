@@ -11,17 +11,19 @@
       Title="Клиент">
 
     <Grid>
-        <!--<toolkit:MaskedTextBox Mask="(000) 000-0000" />-->
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -36,7 +38,7 @@
                      materialDesign:HintAssist.Hint="Отчество"/>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -61,6 +63,7 @@
 
 
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1"
+                Grid.Column="1"
                 Grid.ColumnSpan="2" Click="btnSave_Click"/>
         
 

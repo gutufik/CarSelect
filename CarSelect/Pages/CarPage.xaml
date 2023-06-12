@@ -68,7 +68,7 @@
                      materialDesign:HintAssist.Hint="Цвет"/>
             <TextBox x:Name="tbEngineVolume" Text="{Binding Car.EngineVolume}"
                      Grid.Row="1"
-                     materialDesign:HintAssist.Hint="Объем двигателя"/>
+                     materialDesign:HintAssist.Hint="Объем двигателя (л)"/>
             <ComboBox x:Name="cbDriveType" ItemsSource="{Binding DriveTypes}" 
                       DisplayMemberPath="Name" Grid.Row="2"
                       SelectedItem="{Binding Car.DriveType}"
@@ -79,7 +79,7 @@
                       materialDesign:HintAssist.Hint="КПП"/>
             <TextBox x:Name="tbPrice" Text="{Binding Car.Price}"
                      Grid.Row="4"
-                     materialDesign:HintAssist.Hint="Цена"/>
+                     materialDesign:HintAssist.Hint="Цена (₽)"/>
             <ScrollViewer Grid.Row="5">
                 <TextBox x:Name="tbDescritpion" Text="{Binding Car.Description}" Margin="10 20 10 10"
                          AcceptsReturn="True" TextWrapping="Wrap"

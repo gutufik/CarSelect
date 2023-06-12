@@ -13,14 +13,17 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -35,7 +38,7 @@
                      materialDesign:HintAssist.Hint="Отчество"/>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -62,6 +65,6 @@
         </Grid>
 
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="1"
-                Grid.ColumnSpan="2" Click="btnSave_Click"/>
+                Grid.ColumnSpan="2" Grid.Column="1" Click="btnSave_Click"/>
     </Grid>
 </Page>

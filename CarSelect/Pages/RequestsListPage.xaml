@@ -47,6 +47,7 @@
 
 
         <ListView x:Name="lvRequests" ItemsSource="{Binding Requests}"
+                  MouseDoubleClick="lvRequests_MouseDoubleClick"
                   Grid.Row="1" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>

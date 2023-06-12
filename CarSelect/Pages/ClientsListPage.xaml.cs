@@ -188,5 +188,19 @@ namespace CarSelect.Pages
         {
             ApplyFilters();
         }
+
+        private void lvClients_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var client = lvClients.SelectedItem as Client;
+
+            if (client != null)
+            {
+                NavigationService.Navigate(new ClientPage(client)
+                {
+                    Title = client.ToString()
+                });
+            }
+            lvClients.SelectedIndex = -1;
+        }
     }
 }

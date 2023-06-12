@@ -14,14 +14,20 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="tbName" Text="{Binding Tariff.Name}" Grid.Row="0"
                      materialDesign:HintAssist.Hint="Название"/>
         <TextBox x:Name="tbPrice" Text="{Binding Tariff.Price}" Grid.Row="1"
-                     materialDesign:HintAssist.Hint="Цена"/>
+                     materialDesign:HintAssist.Hint="Цена (₽)"/>
         <ScrollViewer Grid.Row="2" HorizontalAlignment="Center">
             <TextBox x:Name="tbDescription" Text="{Binding Tariff.Description}" Margin="5 20 10 10"
+                     Width="500"
+                     MinHeight="100"
+                     VerticalContentAlignment="Top"
                      AcceptsReturn="True" TextWrapping="Wrap"
                      materialDesign:HintAssist.Hint="Описание"/>
         </ScrollViewer>

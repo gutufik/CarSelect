@@ -172,5 +172,18 @@ namespace CarSelect.Pages
         {
             NavigationService.Navigate(new ProfitByUsers(Users));
         }
+
+        private void lvUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var user = lvUsers.SelectedItem as User;
+
+            if (user != null)
+                NavigationService.Navigate(new UserPage(user)
+                {
+                    Title = $"{user.LastName} {user.FirstName}"
+                });
+
+            lvUsers.SelectedIndex = -1;
+        }
     }
 }

@@ -35,6 +35,7 @@
                    Text="По вашему запросу ничего не найдено"/>
 
         <ListView x:Name="lvUsers" ItemsSource="{Binding Users}"
+                  MouseDoubleClick="lvUsers_MouseDoubleClick"
                   Grid.Row="1" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
