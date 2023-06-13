@@ -16,9 +16,9 @@ namespace CarSelect.Data
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public int CarId { get; set; }
-        public int TariffId { get; set; }
-        public System.DateTime StartDate { get; set; }
+        public Nullable<int> CarId { get; set; }
+        public Nullable<int> TariffId { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> ConsultantId { get; set; }
         public Nullable<int> StateId { get; set; }

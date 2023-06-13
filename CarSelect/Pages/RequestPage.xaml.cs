@@ -55,7 +55,10 @@ namespace CarSelect.Pages
             dpEndDate.DisplayDateStart = request.Id == 0 ? DateTime.Now : request.StartDate;
 
             if (request.Id == 0)
+            {
                 dpEndDate.IsEnabled = false;
+                request.State = DataAccess.GetStates().FirstOrDefault(x => x.Name == "Новая");
+            }
 
             if (request.EndDate != null ||
                 (request.State == null) ? false :

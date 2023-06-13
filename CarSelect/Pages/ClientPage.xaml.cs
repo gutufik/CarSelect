@@ -64,6 +64,8 @@ namespace CarSelect.Pages
         {
             try
             {
+                if (email == null)
+                    return false;
                 MailAddress m = new MailAddress(email);
 
                 return true;
