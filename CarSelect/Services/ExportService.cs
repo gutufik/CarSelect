@@ -65,7 +65,7 @@ namespace CarSelect.Services
                     workSheet[$"A{row}"].Value = request.StartDate.ToString();
                     workSheet[$"B{row}"].Value = request.EndDate == null? "" : ((DateTime)request.EndDate).Date.ToString("d");
                     workSheet[$"C{row}"].Value = request.Tariff.Name;
-                    workSheet[$"D{row}"].Value = request.Tariff.Price;
+                    workSheet[$"D{row}"].Value = $"{request.Tariff.Price} ₽";
                     if (request.Car == null)
                     {
                         workSheet[$"E{row}"].Value = $"";
