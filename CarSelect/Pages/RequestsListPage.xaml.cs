@@ -66,6 +66,9 @@ namespace CarSelect.Pages
             Requests = DataAccess.GetRequests();
             States = DataAccess.GetStates();
             States.Insert(0, new State { Name = "Все", Requests = Requests.ToList() });
+            cbState.ItemsSource = States;
+            cbState.SelectedIndex = 0;
+
             //States[0].Requests = Requests;
             ApplyFilters();
         }

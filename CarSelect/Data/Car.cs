@@ -33,6 +33,7 @@ namespace CarSelect.Data
         public Nullable<int> Mileage { get; set; }
         public Nullable<int> GBTypeId { get; set; }
         public Nullable<int> DriveTypeId { get; set; }
+        public bool IsSelled { get; set; }
     
         public virtual BodyType BodyType { get; set; }
         public virtual DriveType DriveType { get; set; }
