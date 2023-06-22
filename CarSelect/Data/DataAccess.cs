@@ -12,7 +12,7 @@ namespace CarSelect.Data
         public delegate void RefreshListDelegate();
         public static event RefreshListDelegate RefreshList;
 
-        public static List<Car> GetCars() => CarSelectEntities.GetContext().Cars.ToList();
+        public static List<Car> GetCars() => CarSelectEntities.GetContext().Cars.Where(x => !x.IsSelled).ToList();
         public static List<Model> GetModels() => CarSelectEntities.GetContext().Models.ToList();
         public static List<DriveType> GetDriveTypes() => CarSelectEntities.GetContext().DriveTypes.ToList();
         public static List<GBType> GetGBTypes() => CarSelectEntities.GetContext().GBTypes.ToList();
@@ -110,6 +110,11 @@ namespace CarSelect.Data
             if (request.Id == 0)
             {
                 CarSelectEntities.GetContext().Requests.Add(request);
+            }
+
+            if (request.Car != null & request.State.Name == "Завершена")
+            {
+                request.Car.IsSelled = true;
             }
 
             CarSelectEntities.GetContext().SaveChanges();

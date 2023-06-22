@@ -36,6 +36,7 @@
           <Property Name="Mileage" Type="int" />
           <Property Name="GBTypeId" Type="int" />
           <Property Name="DriveTypeId" Type="int" />
+          <Property Name="IsSelled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -575,6 +576,7 @@
           <Property Name="Mileage" Type="Int32" />
           <Property Name="GBTypeId" Type="Int32" />
           <Property Name="DriveTypeId" Type="Int32" />
+          <Property Name="IsSelled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BodyType" Relationship="CarSelectModel.FK_Car_BodyType" FromRole="Car" ToRole="BodyType" />
           <NavigationProperty Name="DriveType" Relationship="CarSelectModel.FK_Car_DriveType" FromRole="Car" ToRole="DriveType" />
           <NavigationProperty Name="FuelType" Relationship="CarSelectModel.FK_Car_Gas" FromRole="Car" ToRole="FuelType" />
@@ -956,6 +958,7 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarSelectModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="IsSelled" ColumnName="IsSelled" />
                 <ScalarProperty Name="DriveTypeId" ColumnName="DriveTypeId" />
                 <ScalarProperty Name="GBTypeId" ColumnName="GBTypeId" />
                 <ScalarProperty Name="Mileage" ColumnName="Mileage" />
