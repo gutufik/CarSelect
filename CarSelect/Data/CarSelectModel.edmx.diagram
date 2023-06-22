@@ -5,13 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="aa2dc02dbe0241f680baf7c2f256e1ed" Name="Diagram1" ZoomLevel="48">
-        <EntityTypeShape EntityType="CarSelectModel.BodyType" Width="1.5" PointX="0.75" PointY="6.75" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="CarSelectModel.BodyType" Width="1.5" PointX="0.75" PointY="17.75" />
         <EntityTypeShape EntityType="CarSelectModel.Brand" Width="1.5" PointX="1.5" PointY="15" />
         <EntityTypeShape EntityType="CarSelectModel.Car" Width="1.5" PointX="3" PointY="1.75" />
         <EntityTypeShape EntityType="CarSelectModel.Client" Width="1.5" PointX="3" PointY="24.375" />
-        <EntityTypeShape EntityType="CarSelectModel.DriveType" Width="1.5" PointX="0.75" PointY="9.375" />
-        <EntityTypeShape EntityType="CarSelectModel.FuelType" Width="1.5" PointX="0.75" PointY="3.375" />
-        <EntityTypeShape EntityType="CarSelectModel.GBType" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="CarSelectModel.DriveType" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CarSelectModel.FuelType" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="CarSelectModel.GBType" Width="1.5" PointX="0.75" PointY="3.375" />
+=======
+        
+        
+        
+        
+        
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; b745107099b12d11e3aace1aca58a60779a02a3f
         <EntityTypeShape EntityType="CarSelectModel.Model" Width="1.5" PointX="0.75" PointY="11.875" />
         <EntityTypeShape EntityType="CarSelectModel.Request" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="CarSelectModel.Role" Width="1.5" PointX="0.75" PointY="21.375" />
