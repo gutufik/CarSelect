@@ -21,7 +21,7 @@ namespace CarSelect.Pages
     /// </summary>
     public partial class UsersListPage : Page
     {
-        private int ITEMSONPAGE = 5;
+        private int ITEMSONPAGE = 10;
         private int _page = 0;
         private int pagesCount => (UsersForFilters.Count / ITEMSONPAGE) + (UsersForFilters.Count % ITEMSONPAGE == 0 ? 0 : 1);
 
@@ -49,8 +49,7 @@ namespace CarSelect.Pages
         {
             Users = DataAccess.GetUsers();
             Roles[0].Users = Users;
-            lvUsers.ItemsSource = Users;
-            lvUsers.Items.Refresh();
+            ApplyFilters();
         }
 
         private void miEdit_Click(object sender, RoutedEventArgs e)
@@ -97,7 +96,7 @@ namespace CarSelect.Pages
                                               (x.Patronymic == null? false: x.Patronymic.ToLower().Contains(search)) ||
                                               x.Login.ToLower().Contains(search)).ToList();
 
-            lvUsers.ItemsSource = UsersForFilters;
+            lvUsers.ItemsSource = UsersForFilters.Skip(_page * ITEMSONPAGE).Take(ITEMSONPAGE);
             lvUsers.Items.Refresh();
 
             if (lvUsers.Items.Count > 0)
