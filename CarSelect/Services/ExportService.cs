@@ -37,7 +37,7 @@ namespace CarSelect.Services
             }
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            workSheet.AutoSizeColumn(0);
+            //workSheet.AutoSizeColumn(0);
             wb.SaveAs($"{desktopPath}/Отчет по сотруднику {user}.xlsx");
         }
 
@@ -54,8 +54,9 @@ namespace CarSelect.Services
                 workSheet[$"A{2}"].Value = "Дата начала";
                 workSheet[$"B{2}"].Value = "Дата окончания";
                 workSheet[$"C{2}"].Value = "Тариф";
-                workSheet[$"D{2}"].Value = "Автомобиль";
-                workSheet[$"E{2}"].Value = "Стоимость";
+                workSheet[$"D{2}"].Value = "Стоимость тарифа";
+                workSheet[$"E{2}"].Value = "Автомобиль";
+                workSheet[$"F{2}"].Value = "Стоимость автомобиля";
 
 
                 var row = 3;
@@ -64,14 +65,23 @@ namespace CarSelect.Services
                     workSheet[$"A{row}"].Value = request.StartDate.ToString();
                     workSheet[$"B{row}"].Value = request.EndDate == null? "" : ((DateTime)request.EndDate).Date.ToString("d");
                     workSheet[$"C{row}"].Value = request.Tariff.Name;
-                    workSheet[$"D{row}"].Value = $"{request.Car.Model.Brand.Name} {request.Car.Model.Name}";
-                    workSheet[$"E{row}"].Value = $"{request.Car.Price} ₽";
+                    workSheet[$"D{row}"].Value = request.Tariff.Price;
+                    if (request.Car == null)
+                    {
+                        workSheet[$"E{row}"].Value = $"";
+                        workSheet[$"F{row}"].Value = $"";
+                    }
+                    else
+                    {
+                        workSheet[$"E{row}"].Value = $"{request.Car.Model.Brand.Name} {request.Car.Model.Name}";
+                        workSheet[$"F{row}"].Value = $"{request.Car.Price} ₽";
+                    }
                 }
-                workSheet.AutoSizeColumn(0);
-                workSheet.AutoSizeColumn(1);
-                workSheet.AutoSizeColumn(2);
-                workSheet.AutoSizeColumn(3);
-                workSheet.AutoSizeColumn(4);
+                //workSheet.AutoSizeColumn(0);
+                //workSheet.AutoSizeColumn(1);
+                //workSheet.AutoSizeColumn(2);
+                //workSheet.AutoSizeColumn(3);
+                //workSheet.AutoSizeColumn(4);
             }
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -102,9 +112,9 @@ namespace CarSelect.Services
                 row++;
             }
 
-            workSheet.AutoSizeColumn(0);
-            workSheet.AutoSizeColumn(1);
-            workSheet.AutoSizeColumn(2);
+            //workSheet.AutoSizeColumn(0);
+            //workSheet.AutoSizeColumn(1);
+            //workSheet.AutoSizeColumn(2);
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             wb.SaveAs($"{desktopPath}/Отчет по тарифам.xlsx");
