@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -63,7 +64,9 @@ namespace CarSelect.Pages
         private void DataAccess_RefreshList()
         {
             Requests = DataAccess.GetRequests();
-            States[0].Requests = Requests;
+            States = DataAccess.GetStates();
+            States.Insert(0, new State { Name = "Все", Requests = Requests.ToList() });
+            //States[0].Requests = Requests;
             ApplyFilters();
         }
 
